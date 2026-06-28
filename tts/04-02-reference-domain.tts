@@ -1,0 +1,5 @@
+Reference domain.
+
+We continue with the fintech bank. The running example for this notebook is turning the raw card-transactions table in bronze into a clean card-transactions table in silver.
+
+So picture bronze as it actually arrives — everything stored as text, some nulls, the odd duplicate from an upstream retry, and a nested merchant object that came straight from jay-son. Our job across this notebook is to clean it, type it, deduplicate it, flatten it, and join in the customer's details, so silver becomes the trustworthy version every downstream team can rely on.

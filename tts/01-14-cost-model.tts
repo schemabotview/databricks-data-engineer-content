@@ -1,0 +1,9 @@
+Cost model — databricks units, autoscaling, auto-termination.
+
+Compute is the part of the platform you pay for by the second, so let's look at the three levers that control its cost.
+
+The first lever is the rate by workload family. Compute is billed in databricks units, and the rate climbs as you go from jobs-light, to jobs compute, to sequel warehouse, to all-purpose, to serverless managed convenience. Picking the right family alone can change a workload's bill by two to three times.
+
+The second lever, on classic compute, is spot versus on-demand workers. Spot machines are sixty to ninety percent cheaper, but they can be evicted at any time. So the rule is, the spark driver should always be on-demand, because losing it kills the whole job, while workers can mix spot and on-demand for E-T-L, where one or two evicted tasks are tolerable.
+
+The third lever is autoscaling and auto-termination. Autoscaling adjusts worker count to load — set a realistic minimum and maximum. Too high a maximum wastes money on idle workers; too low and you throttle the job. Auto-termination is the single biggest cost control on all-purpose clusters — a thirty-minute idle timeout means a forgotten notebook costs at most thirty minutes of compute, not a whole weekend. Job clusters and serverless terminate automatically by design.

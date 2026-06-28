@@ -1,0 +1,9 @@
+Variables and environment overrides — one codebase, three behaviours.
+
+The same manifest and the same resource files can deploy three different sets of behaviour, and the mechanism is variable resolution per target.
+
+So picture a small table of variables across environments. The catalog is the development catalog in dev, the test catalog in test, and the production catalog in prod. The node size is small in dev and bigger in prod. The mode is development in the lower environments and production in prod. The run-as identity is the developer in dev but a service principal in prod. And even the schedule can differ — a relaxed cadence in dev, the real nightly schedule in prod.
+
+And it's not just variables. At the target level you can override any resource field — the schedule, the cluster size, the email recipients, anything.
+
+The exam pattern is clear. When a team needs to promote the same codebase to development, test, and production with different catalog names and cluster sizes, the answer is bundle variables plus targets.

@@ -1,0 +1,9 @@
+The hive metastore legacy catalog.
+
+Every workspace that pre-dates unity catalog still has a special catalog called hive metastore. It's the workspace-local metastore — tables created with the legacy two-part name, schema dot table, live there.
+
+There are two facts to lock in. First, hive metastore is per-workspace, not regional. Two workspaces have two completely independent hive metastore catalogs, which means there's no cross-workspace governance.
+
+Second, new tables should never land in hive metastore. Treat it strictly as legacy. You migrate its contents into a real unity catalog catalog using the upgrade tooling or the sync-table command.
+
+So whenever the exam contrasts a hive-metastore-dot-default name against a proper three-part unity catalog name, the three-part name is always the right pattern.

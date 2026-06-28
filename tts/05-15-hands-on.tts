@@ -1,0 +1,7 @@
+Hands-on — gold objects and quality on the fintech bank.
+
+This walkthrough assumes the silver card-transactions table from the previous notebook exists, and it builds up the gold layer piece by piece.
+
+First, it creates a plain view as a security barrier — exposing only safe columns so analysts granted access to it can't see the sensitive ones. Second, it creates a materialized view for the customer three-sixty, refreshed hourly, so business intelligence hits a precomputed result. Third, it creates a streaming table that reads silver as a stream and aggregates daily volume. Fourth, it adds check constraints to silver to reject bad rows at write time.
+
+And fifth, it sketches a full declarative pipeline as a python module — bronze, silver, and gold datasets with expectations — which you'd deploy through lakeflow jobs in the next notebook. That last cell is a recipe rather than something you run inline; to use it, you save it as a file and create a pipeline in the workspace. Run the rest in a notebook attached to a cluster or sequel warehouse with materialized-view support.

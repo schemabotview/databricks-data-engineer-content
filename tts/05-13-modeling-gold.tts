@@ -1,0 +1,9 @@
+Modeling gold — the patterns business intelligence and machine learning want.
+
+Two patterns cover most gold tables.
+
+The first is the star schema — facts surrounded by conformed dimensions. The bank's analytical reports run on a fact table of card transactions, with foreign keys out to dimensions like customer, merchant, and date. Those dimensions usually change slowly. When a customer's city changes, slowly-changing-dimension type two captures the change while preserving the history — and apply-changes-into stored-as scd type two is exactly the right tool for that.
+
+The second is the wide rollup, sometimes called one big table. That's one row per business entity with every interesting metric inline — the customer three-sixty, with the customer id and thirty-odd rollup columns. It's easier for analysts to query because there are no joins, but it's more expensive to refresh.
+
+So choose by consumer. Business-intelligence dashboards in tools like power bi or tableau want a star schema. Ad-hoc analytics teams and machine-learning feature engineering tend to want the one-big-table shape.

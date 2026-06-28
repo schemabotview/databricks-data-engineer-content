@@ -1,0 +1,9 @@
+Managed connectors — software-as-a-service and database change-data-capture, operated by databricks.
+
+A managed connector is a fully databricks-run ingestion pipeline. You point it at a source — providing credentials and picking which tables or objects you want — point it at a unity catalog, and pick a schedule. Databricks then runs the connector on serverless compute, handles incremental ingestion, usually through change-data-capture where the source supports it, evolves the schema, retries failures, and exposes monitoring.
+
+The families shipping today include software-as-a-service apps like salesforce, workday, servicenow, and netsuite; databases with change-data-capture like sequel server, postgres, mysql, and oracle; and event sources like kafka.
+
+Here's the bank's use case. The payments team uses salesforce for case management, and customer notes about disputed transactions land there. Instead of writing a custom A-P-I poller that has to handle pagination, rate limits, and field changes, the team just enables the salesforce managed connector, picks the objects to sync, and points it at a bronze schema. Databricks handles the rest, including incremental sync.
+
+Why does the exam like managed connectors? Because they have the lowest operational burden — no python code, no database fiddling, no retry logic — and they do native change-data-capture where supported, bringing across only the changed rows.

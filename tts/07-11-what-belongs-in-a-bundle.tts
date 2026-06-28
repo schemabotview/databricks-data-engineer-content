@@ -1,0 +1,9 @@
+What belongs in a bundle, and what doesn't.
+
+Let's draw the line clearly.
+
+What goes in a bundle is workspace-shaped code. Lakeflow jobs. Declarative pipelines. The notebooks those invoke. Python source files and wheels. Machine-learning experiments and models. Volumes and schemas the bundle creates. And A-I-slash-B-I dashboards.
+
+What does not go in a bundle is infrastructure and data. Raw data files — a bundle isn't a data deployment tool. The unity catalog catalogs themselves — those are created out of band and then referenced. Service principals and cloud identity roles — managed by your identity provider. And secret values — only the references to secret scopes go in a bundle, never the secrets themselves.
+
+So the rule of thumb is simple. If the asset is workspace-shaped code, put it in a bundle. If it's infrastructure — catalogs, principals, networking — or it's data, keep it in your cloud infrastructure-as-code or your data pipelines instead.

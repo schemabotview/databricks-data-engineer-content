@@ -1,0 +1,9 @@
+Compute for jobs — the per-task choice.
+
+A nice property of lakeflow jobs is that tasks within one job can use different compute. There are really four choices.
+
+A job cluster is created at task start and torn down at task end. It's the cheapest rate and the default for production E-T-L. Serverless jobs compute has second-scale startup and no cluster management — best for short tasks where a three-minute classic startup is wasted overhead. An all-purpose cluster is long-lived and shared — avoid it for scheduled jobs, because of the higher rate and the risk of cross-job interference. And a sequel warehouse is required for sequel and dashboard tasks, with serverless being the modern default.
+
+In the bank's nightly job, the mix might be — the ingest and silver-build notebook tasks share a job cluster, the dashboard refresh runs on a serverless sequel warehouse, and the tiny notify task runs on serverless jobs compute.
+
+One feature worth calling out — cluster reuse across tasks. You can have several notebook tasks share one job cluster, paying the startup cost only once. For a chain of small steps, that saves real money.

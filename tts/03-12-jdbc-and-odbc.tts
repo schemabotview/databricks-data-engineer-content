@@ -1,0 +1,9 @@
+J-D-B-C and O-D-B-C — pulling from an operational database directly.
+
+When there's no managed connector for a database, or you just need a one-off pull, you can read directly from a J-D-B-C source in a notebook. You give spark the connection url, the table, the credentials, and the driver, and it loads the data, which you then write to a bronze table.
+
+There are four things the exam wants you to know. First, credentials must come from a secret scope, never hardcoded — you fetch them with the secrets helper. Second, the J-D-B-C driver must be installed on the cluster, or you use a runtime that bundles it.
+
+Third, for large pulls you should parallelise the read using a partition column with lower and upper bounds and a number of partitions. Otherwise spark reads the whole table on a single executor, which is slow.
+
+And fourth, remember this is a pull pattern — spark drives it. You use it when the source can't push to object storage, and you typically wrap it in a scheduled job that runs nightly against a snapshot table, so the load stays predictable.

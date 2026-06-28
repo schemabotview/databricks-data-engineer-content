@@ -1,0 +1,9 @@
+Time travel — reading an old version of a table.
+
+Because the log is append-only, every past state of the table still exists — as long as the data files it referenced haven't been vacuumed away. You query a past state either by version number or by timestamp.
+
+There are three operations to know. Version as of reads the table as it was at a specific commit number — useful for reproducibility, like asking what data a model trained on. Timestamp as of reads the table as it was at a wall-clock time — useful for incident response, like asking what the dashboard showed before a bad backfill. And restore writes a new commit that makes the current state equal to a past version. The distinction is important — time travel rewinds your read, while restore rewinds the table itself.
+
+Retention is governed by two table properties. Log retention duration, defaulting to thirty days, controls how long old commit files are kept. And deleted file retention duration, defaulting to seven days, controls how long files marked for removal are kept before vacuum may delete them.
+
+The key caution — if you vacuum aggressively, you lose the ability to time-travel further back than the retention setting. So be deliberate about it.

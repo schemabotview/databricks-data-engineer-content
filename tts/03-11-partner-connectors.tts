@@ -1,0 +1,7 @@
+Partner connectors — fivetran, airbyte, and friends.
+
+Partner connectors are third-party ingestion tools that databricks integrates with natively. They show up under partner connect in the workspace, the sign-up and billing flow through databricks, and they land tables directly into unity catalog.
+
+When do you pick a partner over a managed connector? Three situations. When the source is in the long tail — something like marketo, stripe, or zendesk — where fivetran or airbyte has a connector and lakeflow connect doesn't yet. When you're already standardised on a partner tool across other warehouses and want one operational pattern. Or when you want a no-code interface for analysts to add new sources themselves.
+
+The exam doesn't dig into specific partner tools. What it does expect is that you recognise lakeflow connect, partner connectors, and standard connectors as three peer options — and that you pick the managed connector when the source is supported.

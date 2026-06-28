@@ -1,0 +1,7 @@
+Adaptive query execution recap — what it does for you, automatically.
+
+Adaptive query execution re-optimises the plan at runtime, after each shuffle, using the actual partition statistics instead of the planner's estimates. It does three things.
+
+Dynamic partition coalescing merges undersized post-shuffle partitions, so you get fewer task-startup overheads and larger, more balanced units of work. Dynamic join-strategy switching promotes a sort-merge join to a broadcast join when one side turns out smaller than estimated. And skew-join handling detects oversized partitions and splits them, so one slow task doesn't block the whole stage.
+
+The key fact — adaptive execution is on by default since spark three-point-two and the corresponding runtime. So on a modern workspace, you have it for free. That's why the exam's correct answer to most performance questions is to confirm that adaptive execution, or its skew handling, or its coalescing, is enabled — rather than reaching for manual tuning. It's worth recognising the master switch and the sub-switches for coalescing and skew-join, since the exam may name them.

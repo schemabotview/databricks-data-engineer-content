@@ -1,0 +1,9 @@
+Defining a job — user interface, rest A-P-I, and yaml.
+
+There are three ways to define a job. The exam doesn't ask for exact syntax, but it does expect you to recognise the yaml shape, because that's how automation bundles deploy jobs.
+
+The user interface is point-and-click — fine for one-offs. The jobs rest A-P-I lets you create a job by posting a jay-son body — and that's the same jay-son that automation bundles emit under the hood.
+
+And yaml inside an automation bundle is the production pattern. In the yaml you declare the job's name, its schedule as a cron expression, its failure notifications, and its list of tasks — each task with a key, what it runs, which cluster it uses, its dependencies, and its retry count.
+
+So the thing to carry forward is the connection — the job you build by clicking in the user interface is the same job you can express as yaml in a bundle, and the next notebook is all about deploying that bundle across environments.

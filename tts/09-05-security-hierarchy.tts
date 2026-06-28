@@ -1,0 +1,9 @@
+The security hierarchy.
+
+Unity catalog's permission model is a strict tree — metastore, then catalog, then schema, then the objects. And the central rule is that privileges granted at any level inherit to everything below.
+
+Two privileges gate access at every level above an object. Use-catalog on a catalog — without it, you can't even see the schemas inside. And use-schema on a schema — without it, you can't see the tables inside.
+
+This leads to the most common exam trap. A grant of select on a single table is useless on its own if the principal lacks use-catalog on the catalog and use-schema on the schema. So the answer that omits use-catalog or use-schema is the wrong answer. You always need the chain — use-catalog, use-schema, and then select.
+
+One shortcut, and one caution. Granting select on a whole schema gives select on every existing and future table in it — powerful, but a foot-gun. For production, prefer narrower, more deliberate grants.

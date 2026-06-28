@@ -1,0 +1,7 @@
+Delta uniform — interoperate with iceberg without copying.
+
+Some downstream tools speak iceberg, not delta. Delta uniform solves this. It writes an iceberg metadata layer alongside the delta log, and both layers point at the very same parquet files. So you have one physical dataset that's readable in two formats.
+
+You turn it on with a single table property that enables iceberg as a universal format.
+
+Use it when a tool like snowflake, bigquery, or trino — anything iceberg-native — needs to read tables you produce in databricks. The whole point is that you don't double-write the data and you don't maintain a separate iceberg pipeline.

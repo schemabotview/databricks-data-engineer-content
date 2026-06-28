@@ -1,0 +1,9 @@
+Update, delete, and deletion vectors.
+
+Delta supports row-level updates and deletes against tables sitting on immutable object storage. There are two strategies under the hood.
+
+The classic one is copy-on-write. Delta finds every parquet file containing matching rows, rewrites each of those files without the rows — or with the updated values — and emits add and remove actions in the commit. It's correct, but it's expensive when only a few rows in a five-hundred-megabyte file actually need changing.
+
+The modern one, and the default on supported runtimes, is deletion vectors. Instead of rewriting the file, delta writes a small bitmap that effectively says skip rows seventeen and two thirty-four in this file. The original parquet file stays put, the bitmap rides alongside it in the log, and reads apply it on the fly. The next optimize compacts the file and resolves the deletions for real.
+
+Why does this matter for the bank? Right-to-be-forgotten and data-subject deletes used to require rewriting gigabytes per request. With deletion vectors enabled, the delete becomes a small commit, and the actual file rewrites happen lazily during maintenance windows.

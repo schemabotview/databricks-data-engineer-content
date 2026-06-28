@@ -1,0 +1,7 @@
+Check constraints on plain delta — quality without a pipeline.
+
+Not every table needs a full pipeline framework. Plain delta tables support check constraints — predicates that are enforced on every write. You add one with an alter-table statement, for example requiring that amount is positive, or that currency is one of an allowed set.
+
+There are three things that distinguish them from expectations. Check constraints fail the write on violation — there's no drop-and-log option. They're table-level, not pipeline-level, so they apply to every write, no matter who's writing. And they're cheaper to set up — just one alter-table — but they're less expressive.
+
+So here's how the exam contrasts the two. If the question says reject bad rows at write time on a plain delta table, the answer is check constraints. If the question says track violations, or drop bad rows, or fail the pipeline based on severity, the answer is expectations.

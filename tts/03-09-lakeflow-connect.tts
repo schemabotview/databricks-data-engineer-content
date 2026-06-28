@@ -1,0 +1,13 @@
+Lakeflow connect — the unified ingestion product.
+
+Copy-into and auto loader both handle the problem of files arriving in object storage. But the bank also has data sitting in operational systems — a database for loan origination, salesforce for customer cases, a finance app for the ledger. Lakeflow connect is the databricks-managed ingestion family that handles those.
+
+Think of it as three tiers, from most-managed to most-flexible.
+
+The first tier is managed connectors — fully databricks-operated pipelines for software-as-a-service and database sources. You configure the source credentials and a target catalog, and databricks runs the connector, handling change-data-capture, schema evolution, retries, and monitoring.
+
+The second tier is standard connectors — the open building blocks. Auto loader for files, and structured streaming sources for kafka, kinesis, event hubs, and pub-sub. You write the code; databricks provides the runtime.
+
+And the third tier is partner connectors — third-party tools like fivetran and airbyte, with native databricks integration and joint billing.
+
+The key insight is that all three land data into unity-catalog-governed delta tables. The only real question is who operates the moving parts.

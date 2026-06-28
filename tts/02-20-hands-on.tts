@@ -1,0 +1,9 @@
+Hands-on — delta and unity catalog against the card transactions table.
+
+Let's walk through what you'd actually run, against the development catalog and silver schema you created at the end of the first notebook. The goal is to create the card transactions table, then exercise acid, time travel, merge, and maintenance, and finally peek at the underlying files.
+
+The first habit to notice is setting the working catalog and schema up front, so you don't have to repeat the full three-part name on every statement.
+
+Then you create the table. A good practice here is drop-and-create so the cell is rerunnable. And the recommended modern layout for a per-customer time-series fact table is liquid clustering on customer id and transaction time — exactly the pattern we discussed earlier.
+
+From there you'd append a first batch, query a past version to see time travel, run a merge to apply some changes, and then run optimize and vacuum. Run all of this in a databricks notebook attached to a cluster or a sequel warehouse, where the spark session is already provided for you.

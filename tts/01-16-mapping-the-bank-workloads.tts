@@ -1,0 +1,9 @@
+Mapping the bank's workloads to the platform.
+
+Let's put it all together by lining up the bank's needs with the platform pieces. Picture each requirement on the left and the piece that serves it on the right.
+
+Ingesting daily snapshots from the cards, loans, accounts, and payments source systems maps to lakeflow connect, auto loader, and copy-into, running on a scheduled job cluster. Curating bronze to silver to gold with python and sequel maps to spark and photon over delta tables, again on a job cluster. Declarative E-T-L with data-quality checks maps to lakeflow spark declarative pipelines, on dedicated pipeline compute. Real-time fraud signals on card transactions map to structured streaming over delta, on a job cluster with a continuous trigger.
+
+On the serving side, analyst ad-hoc sequel on the customer and daily-volume tables maps to databricks sequel queries and dashboards, on a serverless sequel warehouse. Restricting sensitive columns to the compliance team maps to unity catalog row filters and column masks, which govern everything. And promoting pipelines from development to test to production maps to automation bundles and the databricks command-line interface, on the same compute but different targets.
+
+Notice the key point. The same few compute families show up over and over. Choosing compute is a small number of well-defined decisions, not a fresh reinvention for every workload.

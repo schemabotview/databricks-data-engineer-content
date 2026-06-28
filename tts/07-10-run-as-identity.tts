@@ -1,0 +1,9 @@
+Run-as identity — service principals in non-development environments.
+
+Bundles execute under an identity, and there are really two questions to answer.
+
+Who deploys the bundle? That's the principal who runs the deploy command. In continuous integration, that's a service principal authenticated through machine-to-machine oauth. And who runs the deployed resources? That's configured by run-as on each target.
+
+The best practice the exam expects is straightforward. In development, run-as is the developer's own identity. In test and production, run-as is a service principal, so production jobs don't depend on any human's account.
+
+And there's a permission boundary to keep in mind. That service principal needs the right grants — use-catalog and use-schema on what it touches, select and modify on the tables, the ability to manage the runs of its jobs and pipelines, and workspace folder permissions for the path the bundle deploys into. The governance notebook walks through grant and revoke in detail.

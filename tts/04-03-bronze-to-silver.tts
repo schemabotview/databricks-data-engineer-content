@@ -1,0 +1,7 @@
+Bronze to silver — what changes between layers.
+
+Here's the key distinction. Bronze is raw and append-only. Silver is clean, conformed, deduplicated, and stable. The transformation between them is what this whole notebook is about.
+
+Almost every bronze-to-silver step does six things. It drops or replaces nulls in required columns — an insert with a null customer id should never reach silver. It casts types — bronze often has everything as text, while silver pins decimal, timestamp, and boolean. It normalises values — uppercasing categories, trimming whitespace, standardising country codes. It deduplicates — the same transaction may arrive twice if the upstream retried, so you pick one row per natural key. It flattens nested structs that bronze landed verbatim from jay-son. And it joins in conformed dimensions, so the silver transaction row carries the customer's city directly, not just a foreign key.
+
+And here's what silver does not do — it does not pre-aggregate. Sums by day, customer rollups, monthly cohorts — those all belong in gold. Silver stays at the grain of one event per row. It's just cleaner.

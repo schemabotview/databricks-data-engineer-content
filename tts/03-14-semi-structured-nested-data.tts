@@ -1,0 +1,9 @@
+Semi-structured and nested data — jay-son into delta.
+
+The card-transactions feed from the payment processor is nested jay-son — each transaction is one object with nested card, merchant, and authorization sub-objects. You have two options for handling it.
+
+Option one is to land it nested and flatten in silver. This is the bronze-then-silver pattern, and it's the one the exam rewards. Auto loader infers a nested struct schema, so the bronze table has columns that are structs or arrays of structs, and silver flattens them later. Option two is to land it flat at the source — cleaner downstream, but you give up the original shape and the ability to replay.
+
+There are three primitives to memorise. Dot access reaches into struct fields — you select merchant dot name, merchant dot category. Explode turns an array column into one row per element, which is how you unpack a line-items or events array. And from-json parses a stringified jay-son column into a struct — combined with schema-of-json, that's how you turn the rescued-data column into typed fields.
+
+One more that often shows up in answers — the multi-line option on a jay-son read. You use it for files where the entire file is a single object spread across many lines, rather than one jay-son object per line.

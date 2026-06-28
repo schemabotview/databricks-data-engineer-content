@@ -1,0 +1,9 @@
+What delta lake actually is.
+
+A delta table on disk is two things living in one directory.
+
+The first is the parquet files. These are normal column-oriented data files — anything that can read parquet can read them.
+
+The second is a special log directory, the delta log. It holds an ordered sequence of jay-son commit files, one per transaction. Each commit lists actions — add this file, remove that file, the schema is now this, the table properties are now those. A reader replays the log to compose the current state of the table: which files belong, which don't, and what columns they have.
+
+So every delta operation is the same loop. Plan the change, write new parquet files, and then atomically append a new jay-son commit to the log. That atomic append is the trick — it's what turns a pile of files on object storage into a real transactional table.

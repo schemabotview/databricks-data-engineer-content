@@ -1,0 +1,9 @@
+Copy-into versus auto loader — when each wins.
+
+Both of these load files from object storage into delta, and both are idempotent — auto loader through its streaming checkpoint, copy-into through delta's tracked load history. So you pick between them by operational shape.
+
+Copy-into is pure sequel. It's best for daily batch with small to medium file counts. Schema evolution is manual — you add merge-schema per run. Its throughput ceiling is hundreds to a few thousand files per run, and its latency follows your run cadence. At the bank, it fits the nightly accounts file drop.
+
+Auto loader is a dataframe and structured-streaming API. It's best for continuous or high-volume incremental loads. Schema evolution is built in through the evolution mode. It scales to millions of files using file notification, and its latency can drop to seconds with a continuous trigger. At the bank, it fits the sub-hourly card-transaction jay-son drops.
+
+The single most common exam pattern boils down to two phrases. New files arrive continuously and the schema may evolve — that's auto loader. A single batch of files lands once a day and simple sequel is preferred — that's copy-into.

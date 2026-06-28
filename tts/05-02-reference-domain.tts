@@ -1,0 +1,5 @@
+Reference domain.
+
+We extend the fintech bank's silver layer up into a gold layer — the business-ready tables that business intelligence and machine learning actually consume.
+
+Picture four gold objects we'll build by the end. A customer three-sixty rollup that summarises each customer's recent activity. A daily card-volume table that updates continuously. A customer dimension that keeps full history of changes. And a transactions fact table. Each one is built with a different gold object type, which is exactly the point — this notebook is about choosing the right one for each job.

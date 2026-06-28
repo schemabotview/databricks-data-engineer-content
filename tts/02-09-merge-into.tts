@@ -1,0 +1,9 @@
+Merge into — upserts, deletes, and slowly changing dimension patterns.
+
+Merge into is the single most-used delta data-manipulation statement in production. It joins a source — your incoming changes — to a target — the table — on a key, and then lets you express what to do in each case. When a row matches you can update it, when it doesn't match you can insert it, and optionally, when a target row is not matched by the source, you can delete it.
+
+There are two patterns the bank uses constantly. The first is slowly changing dimension type one, the overwrite pattern. The customer's city changes, so you just update it in place — no history is kept.
+
+The second is type two, the history pattern. When the customer's city changes, you close the old row by setting a valid-to date and marking it not current, then insert a new row marked current with a fresh valid-from date. This is implemented as two passes — one merge to close the existing rows, and a separate insert of the new active row. The modeling notebook walks through the full pattern inside a pipeline.
+
+One more connection worth making. Merge is also how change-data-capture feeds land into bronze and silver. The apply changes into statement in declarative pipelines is essentially a declarative wrapper around this same merge machinery.

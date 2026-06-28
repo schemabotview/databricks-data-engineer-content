@@ -1,0 +1,13 @@
+Choosing compute — the four-scenario cheat sheet.
+
+The section-one questions almost always pose a workload and ask you to pick the compute. So let's map the four scenarios you'll keep seeing.
+
+Scenario one. Analysts run ad-hoc sequel all day on curated tables, they need fast startup, many concurrent users, and tight cost control. The answer is a serverless sequel warehouse with autoscaling.
+
+Scenario two. Nightly scheduled E-T-L — bronze to silver to gold for the bank's loans vertical. The answer is a job cluster, attached to a lakeflow jobs task, or serverless jobs compute for short tasks.
+
+Scenario three. A single engineer prototyping a new feature in a notebook for the next few hours. The answer is a single-user all-purpose cluster, or serverless for notebooks, with auto-termination on.
+
+Scenario four. A proof of concept running entirely on small data on the driver, with no distribution needed. The answer is a single-node cluster — driver only, no workers.
+
+And watch for three traps the exam plants. First, adding more workers to an all-purpose cluster when the real fix is using a serverless sequel warehouse — more workers does not fix the wrong compute family. Second, an all-purpose cluster for scheduled E-T-L — it works, but it burns money at the higher rate and risks cross-job interference. And third, the high-concurrency cluster — that's a legacy concept; the modern answer is a serverless sequel warehouse.

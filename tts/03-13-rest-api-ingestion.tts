@@ -1,0 +1,9 @@
+Rest A-P-I ingestion — for sources with neither a connector nor a database driver.
+
+For a long-tail source — say a fraud-scoring A-P-I from a third party — you may have to call rest yourself from a notebook. The pattern is straightforward, but the gotchas matter.
+
+Paginate — almost every A-P-I returns pages, so loop until the response says there's no more. Authenticate with secrets — keep the token in the secret store, never in the notebook. Land the raw jay-son to a volume first, and then ingest it with auto loader or copy-into — don't pivot the A-P-I response straight into a delta write inside the loop, because you'd lose the audit copy and the ability to re-process. And schedule it with a job, with retries enabled.
+
+So think of it as a two-stage pattern. Stage one is a notebook task that calls the A-P-I and writes raw jay-son into a volume. Stage two is auto loader moving that file into bronze.
+
+The key takeaway — treat rest as a landing strategy, not a target. The same auto loader or copy-into logic from earlier then handles the file-on-storage to delta hop, with all of its idempotency and schema-evolution guarantees.

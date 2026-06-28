@@ -1,0 +1,11 @@
+Pipeline modes, settings, and the development workflow.
+
+A declarative pipeline is configured once and re-run many times. There are three knobs the exam tests.
+
+The first is triggered versus continuous. Triggered means the pipeline runs once against all available data and then stops — best for scheduled batch. Continuous means it runs forever, processing new data as it arrives — best for real-time streaming.
+
+The second is development versus production mode. In development mode, the cluster stays alive between runs so iteration is fast, and errors don't tear the cluster down. In production mode, the cluster terminates between runs to save money, and an error fails the run.
+
+The third is the channel — current, which is the latest generally-available runtime, or preview, for early-access features.
+
+And one essential setting beyond those three — the target catalog and schema. Every pipeline lands its datasets into a unity catalog catalog and schema you choose. Without setting that target, the datasets are visible only to the pipeline itself.

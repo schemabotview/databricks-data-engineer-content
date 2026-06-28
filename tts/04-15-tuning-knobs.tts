@@ -1,0 +1,11 @@
+Tuning knobs — the four the exam asks about.
+
+You won't tune in this notebook — the optimization notebook owns that — but the exam explicitly calls out four configuration keys, so know what each controls.
+
+The first is spark-sequel-shuffle-partitions. It sets the number of partitions spark uses after a shuffle, like a join or an aggregation, and it defaults to two hundred. For big jobs you bump it up to reduce the data per partition and avoid out-of-memory; for tiny jobs you drop it to avoid hundreds of empty tasks. Adaptive query execution coalesces this dynamically when it's enabled.
+
+The second is spark-default-parallelism. It's the default partition count for the older R-D-D operations, and it's mostly an R-D-D knob — rarely tuned directly on dataframe work.
+
+The third is executor memory and driver memory — the heap for each executor and for the driver. When executor tasks run out of memory, you raise executor memory or split the work. When a collect-to-driver crashes, you raise driver memory.
+
+And the fourth is the auto-broadcast-join-threshold — the maximum size of a side spark will auto-broadcast. You raise it past ten megabytes to broadcast slightly larger dimension tables, or set it to minus one to disable auto-broadcast entirely. The exam usually phrases the question as a symptom — a job is shuffling heavily — and asks which knob to reach for.

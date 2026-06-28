@@ -1,0 +1,11 @@
+Joins — the seven types.
+
+Spark supports the full sequel join family, plus two spark-specific shapes. Let's go through them.
+
+Inner returns rows where the key matches on both sides. Left returns all rows from the left, with nulls on the right where there's no match. Right is the mirror image. Full returns all rows from both sides, with nulls on whichever side is missing.
+
+Then the two spark-specific ones. Left-semi returns rows from the left that have a match on the right — but it brings no columns from the right side. Left-anti returns rows from the left that do not match on the right. And finally cross is the cartesian product, which is rarely the right answer.
+
+On the API side, when the key column has the same name on both sides you pass it as a string. When the names differ you pass a column expression. And for a multi-key join you pass a list of column names.
+
+Left-semi is the exam favourite for a question like — give me the customers who have at least one transaction. A select on the customers side would scan every row, but left-semi short-circuits at the first match per key, which is both correct and efficient.

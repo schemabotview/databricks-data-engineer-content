@@ -1,0 +1,7 @@
+Dynamic views — the older alternative.
+
+Before column masks and row filters became first-class, the bank's pattern was a dynamic view. That's a regular view whose select uses case-when group-membership checks to mask columns and filter rows all in one definition — redacting email and phone unless you're in compliance, and limiting the rows by region the same way.
+
+There are still a couple of reasons to use dynamic views. Very simple cases. And compatibility with non-unity-catalog clients that don't understand masks and filters.
+
+But masks, row filters, and attribute-based access control beat dynamic views for three reasons. They apply to the base table, so every reader, every query path, and every business-intelligence tool gets them — there's no forgot-to-use-the-secure-view failure mode. They compose with regular grants, instead of forcing you to re-grant a separate view. And attribute-based policies scale them across many tables through tags, which a hand-written view per table never could.

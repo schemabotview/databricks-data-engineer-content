@@ -1,0 +1,9 @@
+Control flow — if-else, for-each, and retries.
+
+There are three control-flow primitives the exam can plant a question on.
+
+The first is the if-else condition task. Its only job is to evaluate a boolean expression and route the graph. Downstream tasks then declare that they should run only if the parent's branch was true. So you could check whether today is friday and route to a full fraud rebuild, otherwise skip straight to the dashboard.
+
+The second is the for-each task. It runs a child task once per item in an array — that's how you fan the same notebook out over multiple inputs, like running one ingest notebook for each of the four verticals, in parallel. Each execution receives one item as a parameter.
+
+The third is retries, configured at the task level. Max-retries is how many times databricks re-runs the task on failure. There's a minimum retry interval to space out attempts, a retry-on-timeout option to also retry when the task times out, and a timeout-seconds setting to kill a task that runs too long. The classic exam pattern is a flaky upstream A-P-I — you set max-retries so transient failures recover automatically before anyone gets paged.

@@ -1,0 +1,11 @@
+The foundation stack — four layers.
+
+Picture four layers stacked on top of each other, and read them from the bottom up. Each layer is built on the one below.
+
+At the bottom is cloud object storage. This is just bytes on disk — parquet files plus a transaction log directory. It is cheap, durable, and infinitely scalable, but on its own it has no transactional guarantees.
+
+Above that sits delta lake. Delta lake turns those raw files into proper tables. A special log directory holds an ordered sequence of jay-son commit files, and readers compose them to see a consistent snapshot. This is where acid transactions, time travel, schema enforcement, and merge come from.
+
+Next is the engine — spark plus photon. Open-source spark does the planning and distribution, and photon accelerates the hot path. One runtime covers batch, streaming, sequel, and machine learning.
+
+And at the top is unity catalog, the governance layer. Three-level names, grant and revoke, and lineage across everything. The thing to remember is the order — storage, then delta lake, then the engine, then governance. Each one only makes sense because of the layer beneath it.

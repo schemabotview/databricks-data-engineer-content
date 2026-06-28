@@ -1,0 +1,11 @@
+Plain views — security barriers, hiding columns, light wrapping.
+
+A view stores no data. It's a saved select statement, evaluated every single time it's read. There are three idiomatic uses.
+
+The first is as a security barrier. You create a view that selects only the safe columns from a sensitive table, then grant select on that view to an analyst group. The analysts can't see emails, phone numbers, or dates of birth, simply because the view never exposes those columns.
+
+The second is light wrapping. You encode a frequently-used filter or join once — say, transactions from the last seven days — and share that one definition everywhere, instead of everyone re-writing the filter.
+
+The third is temporary views inside a notebook session — a session-scoped temp view, or a global temp view that's visible across sessions under a special prefix.
+
+And here's the trade-off the exam tests. A view recomputes on every read. So for a heavy aggregation hit by a thousand dashboard refreshes a day, a materialized view is the right choice — a plain view would re-run that whole aggregation every single time.

@@ -1,0 +1,7 @@
+Bottleneck one — data skew.
+
+Here's the symptom in the interface. The stage takes twenty-five minutes; one hundred ninety-nine of two hundred tasks finished in thirty seconds, but one task is still running at twenty-four minutes. The task summary shows a median shuffle read of four hundred megabytes against a max of five gigabytes.
+
+The diagnosis is that the join or aggregation key is unbalanced. One value of the key — say a corporate customer with fifty million transactions — has a hundred times the rows of the median customer. After the shuffle, all of those rows land on one executor task, and that one task becomes the whole stage's bottleneck.
+
+There are three remedies, in the order the exam expects you to try them. First, enable adaptive-query-execution skew-join handling — this is the correct answer for most exam questions. It detects oversized partitions at runtime, splits them into smaller sub-partitions, and joins each independently, with zero code change. Second, broadcast the small side if it fits in driver memory, which eliminates the shuffle entirely. And third, salt the join key when adaptive execution isn't enough — add a small random integer to the key, join, then aggregate the salt away. That's heavier surgery, so keep it for when the first two haven't done the job.

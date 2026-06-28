@@ -1,0 +1,9 @@
+Streaming tables — append-only, continuous, declarative.
+
+A streaming table is an append-only delta table fed by a structured streaming query, declared as a first-class unity catalog object instead of as imperative read-stream and write-stream code.
+
+In sequel you create or refresh a streaming table, and its source is a streaming read-files call — which is just the sequel surface of auto loader. So you get the same checkpointing and exactly-once semantics, but the source is simply a function call in your query.
+
+There are two pipeline modes that drive cost and latency. Triggered means the pipeline runs to completion against whatever data is available, then shuts down — that's the streaming-tables-on-a-schedule pattern, and it's lower cost. Continuous means the pipeline runs forever, processing data as it arrives — lower latency, higher cost.
+
+The takeaway for the exam — a streaming table is the right answer whenever a question describes records arriving continuously and a table that should update continuously.

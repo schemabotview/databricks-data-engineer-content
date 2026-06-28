@@ -1,0 +1,9 @@
+Bottleneck three — disk spilling.
+
+The symptom is a non-zero spill column in the stage detail — either spill-memory or spill-disk. The executors are writing intermediate state to disk because it didn't fit in ram.
+
+Why does spilling hurt? Because spilled data has to be re-read from disk, often de-serialised, and joined back in. That round trip is orders of magnitude slower than working in memory, so a stage that spills can be dramatically slower than one that doesn't.
+
+The remedies. Increase the shuffle-partitions setting, so more, smaller partitions each fit in memory. Increase executor memory, watching the trade-off that bigger executors mean fewer per node. Filter or aggregate earlier to shrink the per-partition payload. And enable adaptive execution so it coalesces to the optimal partition size at runtime.
+
+The exam pattern here is — a job is shuffling two hundred gigabytes across two hundred partitions and tasks are spilling to disk. The cleanest single-config answer is to bump the shuffle-partitions so each partition lands in the hundred-to-two-hundred-megabyte range — roughly one to two thousand partitions for two hundred gigabytes.

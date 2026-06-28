@@ -1,0 +1,11 @@
+Aggregates the exam tests.
+
+There are five aggregates with exam-relevant behaviour worth pinning down.
+
+First, count-star versus count of a column. Count-star counts every row; count of a column skips nulls. So how many transactions did this customer make uses count-star, while how many transactions had a merchant category populated uses count of that column.
+
+Second, approximate-count-distinct. It's a hyperloglog-based approximate distinct count, and it's orders of magnitude cheaper than an exact count-distinct on a billion-row table. The exam expects you to pick it when approximate is good enough.
+
+Third, mean and average are the same function with two names. Fourth, sum, min, and max all skip nulls by default. And fifth, summary is a dataframe method that emits count, mean, standard deviation, min, max, and percentiles in a single call — handy for ad-hoc profiling.
+
+And the way you run several of these at once is the agg pattern — a group-by followed by agg, where you list each aggregate with an alias. That's how you'd compute, per customer, the transaction count, the distinct merchants, the total spend, and the average spend all together.

@@ -1,0 +1,7 @@
+Converting between managed and external.
+
+You can flip a table between managed and external without rewriting the data, using alter-table set-managed or set-external. The exam expects you to know this is possible and what changes.
+
+There are three exam-worthy facts. First, the three-part name doesn't change, so queries against the table keep working through the conversion. Second, whether the files physically move depends on the direction and the storage layout, so always test on a copy first. And third, the principal performing the conversion needs modify on the table, plus permissions on the target storage or external location.
+
+The more common direction is converting from external to managed. You started with files dropped by a third party, and now you want unity catalog to manage their full lifecycle — including predictive optimization, which only managed tables get.

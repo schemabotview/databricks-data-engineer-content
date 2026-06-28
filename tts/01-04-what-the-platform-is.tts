@@ -1,0 +1,11 @@
+What the Data Intelligence Platform actually is.
+
+The databricks data intelligence platform is the lakehouse, plus an A-I-native layer on top. There are three sentences worth memorising.
+
+It is open at the storage layer. Your data lives in your own cloud account — S-three, A-D-L-S, or G-C-S — as delta tables, an open format databricks does not lock you into.
+
+It is unified at the engine layer. Spark, with photon as the C-plus-plus vectorised accelerator, handles batch E-T-L, streaming, sequel analytics, and machine learning training as one runtime.
+
+And it is governed at the catalog layer. Unity catalog is the single source of truth for permissions, lineage, discovery, and audit across all workloads.
+
+Sitting on top of that core, the platform layers in A-I-aware features — a built-in assistant, intelligent search, natural-language interfaces, and mosaic A-I for serving models. For the exam, the key insight is that it mostly cares about the lakehouse core. The A-I layer is supporting context.

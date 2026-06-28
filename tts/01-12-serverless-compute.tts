@@ -1,0 +1,9 @@
+Serverless compute for notebooks and jobs.
+
+Beyond sequel warehouses, there is now serverless compute for interactive notebook use and for lakeflow jobs tasks. Same idea — databricks-managed machines, second-scale startup, no cluster management — but extended from sequel to the full notebook surface.
+
+Use it for development with fast iteration, for lightweight scheduled tasks, or anywhere a three-minute job-cluster startup is simply too long for the workload.
+
+There are trade-offs to know. There are no init scripts and no arbitrary cluster libraries — instead you install python packages notebook-scoped, which is what most workloads want anyway. There's no direct cluster customisation — the instance type, spark configs, and network are managed for you. And workloads that need very specific jars, G-P-Us, or custom spark configs still need classic compute.
+
+The rule of thumb the exam rewards is this. Prefer serverless, unless something explicitly forces classic — like data residency inside your own network, G-P-U workloads, init scripts, or exotic libraries.

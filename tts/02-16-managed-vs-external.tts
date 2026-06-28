@@ -1,0 +1,11 @@
+Managed versus external tables — the choice that decides everything else.
+
+Every unity catalog table is one of two flavours.
+
+A managed table means unity catalog owns both the metadata and the underlying files. The files live at a catalog-managed storage location, and if you drop the table, the files are eventually deleted.
+
+An external table means unity catalog owns only the metadata, while the files live at a path you specify, inside a unity catalog external location. Drop the table, and only the metadata is removed — the files stay.
+
+So who owns the files, where they live, and what drop does to them — those are the three questions that separate the two. And there's a fourth that the exam loves: a managed table gets predictive optimization and the full lifecycle features; an external table does not.
+
+The default the exam rewards is to prefer managed. External tables exist for specific reasons — you have a multi-tool data lake, the files are produced by something other than databricks, or a regulator requires you to hold the files at a specific path you control. If none of those apply, choose managed.

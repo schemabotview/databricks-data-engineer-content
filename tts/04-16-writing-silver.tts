@@ -1,0 +1,9 @@
+Writing silver.
+
+There are two write modes the exam tests.
+
+The first is full overwrite. The silver build is idempotent — re-running it rebuilds the whole table from bronze. You use overwrite mode, and you only add overwrite-schema when the schema actually changed.
+
+The second is an upsert with merge-into. Here silver tracks updates coming from bronze change-data-capture — when a row matches you update it, when it doesn't you insert it.
+
+Then there are the layout decisions. For new tables, use liquid clustering on the natural query keys, like customer id and transaction time. For legacy partitioned tables you might still see partition-by on a date column, but new tables should prefer liquid clustering. And enable predictive optimization at the catalog level so silver stays compact and well-organised without you writing a separate maintenance job.

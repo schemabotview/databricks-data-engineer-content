@@ -1,0 +1,11 @@
+Medallion architecture — what belongs in each layer.
+
+Three layers, each with a single job, and the exam tests recognising which layer a description fits into.
+
+Bronze is raw, append-only, and replayable. One table per source, the schema mirrors the source — nested data is fine — strings and nulls are allowed, and quality is deliberately not enforced here. Bronze is your audit copy.
+
+Silver is cleaned, conformed, and deduplicated. It stays at the same grain as bronze — one row per event — but the types are pinned, nulls in required columns are dropped, the foreign keys are conformed, and quality rules are now enforced, through expectations or check constraints.
+
+Gold is business-ready, aggregated, and served. It's a star schema or a wide rollup, ready for business intelligence or machine learning. It's often pre-aggregated — by day, or per customer — so a gold row is one per business entity, not one per event.
+
+The key principle for gold — prefer many narrow, purpose-built tables over one giant catch-all table.

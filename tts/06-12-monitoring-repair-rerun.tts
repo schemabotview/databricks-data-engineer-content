@@ -1,0 +1,11 @@
+Monitoring, repair, and rerun.
+
+The lakeflow jobs interface is the exam's go-to for monitoring questions, and there are three things to know.
+
+The run history view lists every run of a job, with its state, duration, and a little trend line of durations over time. You use it to spot trends — like the job taking twice as long as it did three months ago.
+
+The task graph view shows the graph for a single run, coloured by state — red for failed, grey for skipped, green for succeeded. You use it to find the upstream blocker. If the ingest task is red and everything after it is grey, the root cause is that ingest task.
+
+And repair run reruns only the failed tasks of a previous run, with the same parameters, in the same graph. That's cheaper and safer than re-running the whole job from scratch.
+
+So the exam's monitoring pattern is — a job's median duration suddenly tripled, where do you look first? The answer is the run history view for the trend, then the task graph of a slow run to find the offending task. The troubleshooting notebook goes deeper into spark-level diagnostics from there.

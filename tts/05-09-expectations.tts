@@ -1,0 +1,9 @@
+Expectations — declarative data quality.
+
+Expectations are predicates you attach to a dataset. When a row arrives that violates the predicate, the pipeline does one of three things, depending on which keyword you used.
+
+With plain expect, the row is kept, but the violation is logged to the event log. With expect-or-drop, the violating row is dropped, and the violation is logged. With expect-or-fail, the pipeline fails on the very first violation.
+
+So those are three escalating severities. Expect is for monitoring — you want to measure quality without changing the data. Expect-or-drop is for filtering — quarantine the bad rows but keep the pipeline flowing. And expect-or-fail is for critical rules where a single bad row means something is seriously wrong and the run must stop.
+
+You can attach several expectations at once, mixing severities — for instance, log a missing customer id, drop an unreasonably large amount, and fail outright on an invalid currency. The whole point is that data quality becomes declarative metadata on the dataset, not hand-written validation code.

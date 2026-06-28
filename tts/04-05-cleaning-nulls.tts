@@ -1,0 +1,11 @@
+Cleaning nulls.
+
+Three operations cover ninety percent of what you'll do with nulls.
+
+First, dropping rows that have nulls in required columns — you use drop-n-a with a subset of the columns that must be present, like transaction id, customer id, and amount.
+
+Second, replacing nulls with a default — you use fill-n-a with a map of column to default value, so a missing category becomes unknown and a missing flag becomes false.
+
+And third, conditional replacement — using when and otherwise to set a value based on a condition, for example turning a null status into pending.
+
+One tip the exam likes. Drop-n-a with how-equals-all drops only the rows where every column is null. Drop-n-a with how-equals-any, which is the default, drops a row if any column is null. And you use the subset argument to scope it to just the columns you care about.

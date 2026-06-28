@@ -1,0 +1,7 @@
+Hands-on — tiny utilities you'd write inside job tasks.
+
+Jobs themselves are defined in the workspace or through bundles, so this walkthrough focuses on the notebook code you'd write inside the tasks of the bank's nightly job — the small bits that read parameters, set task values, decide branches, and emit summary metrics.
+
+The first cell pulls a job parameter through a widget — outside a job the widget returns its default, but inside a job it returns the value the orchestrator passed. The second cell, inside the ingest task, counts how many new files landed and sets that as a task value. The third cell, in a downstream task, reads that upstream value back. And later cells sketch a branch decision and a final summary metric.
+
+Run these in a databricks notebook attached to a cluster. The key idea is to see how a task reads its inputs and hands state to the next task, which is exactly the wiring the orchestrator manages for you in production.

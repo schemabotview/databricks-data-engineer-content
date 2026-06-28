@@ -1,0 +1,9 @@
+Schema enforcement versus schema evolution.
+
+Delta lake enforces the table's schema on every write. By default, a write that introduces a new column fails. That's schema enforcement, and it's exactly what keeps the cards table from silently growing a merchant country column from a misbehaving upstream.
+
+When the column is intentional, you opt in to schema evolution. There are three ways. Merge schema on a write adds any missing columns from the incoming dataframe to the table, and existing rows just get null in the new columns. Overwrite schema on an insert-overwrite replaces the schema entirely — it's destructive, so use it rarely. And alter table add columns is the explicit data-definition approach, which is the most auditable option for production.
+
+Auto loader, coming in the next notebook, has its own schema-evolution modes — add new columns, rescue, fail on new columns, and none — but they're all built on this same delta primitive.
+
+The rule that ships to the exam is simple. Schema enforcement is on by default. Evolution is opt-in, either per write or through an explicit alter table. Silent column additions are not a thing on delta.

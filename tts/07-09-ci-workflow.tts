@@ -1,0 +1,9 @@
+C-I workflow — promotion from development to test to production.
+
+Let's walk the end-to-end shape with a tool like github actions.
+
+A developer commits and pushes, and opens a pull request. That triggers continuous integration to run validate against every target — dev, test, and prod — plus any linting. Notice that validate runs for all targets even before merge, so you catch a broken production variable early.
+
+After review and merge to the main branch, continuous integration runs deploy. First it deploys to test and runs a smoke job, waiting for it to go green. Only once test passes does it deploy to production.
+
+So the pattern to remember is — validate on every pull request, deploy on merge, and promote target by target with a gate in between. The same bundle, the same commands, just a different target flag at each stage.

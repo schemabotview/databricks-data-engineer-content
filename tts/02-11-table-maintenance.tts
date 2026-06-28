@@ -1,0 +1,11 @@
+Table maintenance — optimize, zorder, and vacuum.
+
+There are three commands every delta table needs over its life.
+
+Optimize compacts many small files into fewer files of around one gigabyte each. Streaming writes and merge operations create lots of small files, and small files mean slow reads. Optimize is a rewrite that reduces the file count without changing what the table contains.
+
+Zorder by some columns co-locates rows with similar values of those columns into the same files. This dramatically improves file-skipping when queries filter on those columns. For example, zordering card transactions by customer id lets a per-customer lookup read maybe one percent of the files instead of all of them.
+
+Vacuum actually deletes the data files that were marked for removal more than the retention window ago — seven days by default. This is what reclaims storage cost. Important caution — that default retention is enforced. Delta blocks shorter retentions unless you explicitly opt in, because cutting it short can break in-flight readers and destroy time travel.
+
+And the good news for the bank — on unity catalog, predictive optimization can run optimize and vacuum for you automatically, which is exactly what we look at next.

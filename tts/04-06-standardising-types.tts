@@ -1,0 +1,7 @@
+Standardising types.
+
+Bronze often has everything as text, and that's by design — the schema-on-read step shouldn't lose data. Silver is where you pin the real types — casting amount to a decimal, the flag to a boolean, and the timestamp string to an actual timestamp.
+
+But there's an important pitfall. A string that won't parse silently becomes null — it is not an error. So a malformed amount just quietly disappears into a null, and you'd never know unless you defend against it.
+
+There are two ways to defend. You can land bad rows in a quarantine table and alert on its row count, so a spike in failures is visible. Or you can use try-cast in sequel, which behaves exactly like a cast but is explicit about its null-on-failure behaviour, making the intent clear in the code.

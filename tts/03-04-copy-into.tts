@@ -1,0 +1,9 @@
+Copy-into — idempotent file ingestion in pure sequel.
+
+Copy-into is a sequel statement that loads files from a cloud storage location into a delta table, remembers which files it has already loaded, and skips them on the next run. That single property — idempotency — is what makes it the right answer for daily-batch file loads.
+
+A few things are happening under the hood. The target is a unity-catalog-governed delta table. The source path can be in any cloud object store the workspace can reach — A-D-L-S, S-three, or G-C-S — usually referenced through a volume or external location. After the first run, delta records the loaded file paths, so re-running the same statement is simply a no-op for files it's already seen.
+
+It's worth knowing the two option groups. Format options are the reader options for the source format — things like header and infer-schema. Copy options are the writer options for the target table — things like merge-schema.
+
+So when do you pick copy-into? When you have a small to moderate number of files per run — hundreds, not millions. When the cadence is predictable, typically a scheduled job. And when you want declarative sequel with no streaming machinery to debug.

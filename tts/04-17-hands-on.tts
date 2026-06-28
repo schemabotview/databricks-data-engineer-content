@@ -1,0 +1,7 @@
+Hands-on — from raw card transactions to silver.
+
+To keep this notebook self-contained, the walkthrough first re-creates a tiny bronze table inline — strings throughout, a couple of nulls, one duplicate transaction id from a late correction, and a nested merchant object. That little dataset has every problem silver has to fix.
+
+Then it runs the full bronze-to-silver pipeline end to end. Clean the nulls in the required columns, cast the text fields to their real types, flatten the nested merchant struct, deduplicate down to the latest row per transaction using a window, and finally write the result out as the silver card-transactions table.
+
+The point of the exercise is to see all the pieces from this notebook working together on one small, messy example — so run it in a databricks notebook attached to a cluster and watch each step clean the data a little further.

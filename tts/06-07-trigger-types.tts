@@ -1,0 +1,11 @@
+Trigger types — what fires a job run.
+
+There are five trigger options, and the first three are the ones the exam tests directly.
+
+Scheduled, or time-based, runs at a specific time on a cron expression — every day at two in the morning, every four hours, weekdays at nine. It's best when the source has a predictable cadence — the file lands every night at one-thirty, so you schedule the job for two.
+
+File arrival runs when new files land in a specific path. Lakeflow jobs watches the path, and when it sees new files, the job fires. It's best when the source is irregular — the vendor drops a file some time after their batch ends, and you don't want to schedule defensively and still miss it.
+
+Table update runs when a delta table gets a new commit. You watch upstream silver, and trigger the gold rebuild whenever silver changes. It's best when the dependency is table state, rather than files or wall-clock time.
+
+And the remaining two — continuous, which runs forever for the streaming-pipeline pattern, and manual, where you kick it off by hand.

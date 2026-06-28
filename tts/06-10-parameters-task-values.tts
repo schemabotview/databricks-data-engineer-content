@@ -1,0 +1,11 @@
+Parameters, task values, and task references.
+
+Tasks need to share state with each other, and there are three mechanisms.
+
+Job parameters are defined at the job level and are visible to every task. The bank's nightly job declares a processing-date parameter, and every notebook reads it.
+
+Task values let one task set a key-value pair that downstream tasks read. So an upstream task counts how many new files it landed and sets that as a task value, and a downstream task reads it back by naming the upstream task key and the value key.
+
+And built-in references are templated placeholders usable in any task parameter — things like the job id, the job run id, the run's start date, a job-level parameter, or a task value from upstream.
+
+These are the right answer whenever a question asks how to pass a date or a row count between tasks without writing to a side table. The orchestrator carries the value for you.

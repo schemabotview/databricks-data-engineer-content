@@ -1,0 +1,9 @@
+Broadcast joins.
+
+A normal join shuffles both sides by the join key, which is expensive for large tables. A broadcast join avoids that — it ships the smaller side to every executor, eliminating the shuffle entirely.
+
+Spark auto-broadcasts when one side's estimated size is below the auto-broadcast-join-threshold, which defaults to ten megabytes but is often tuned to a hundred or more. So for the bank, joining fifty billion card transactions against a five-megabyte merchant-categories lookup auto-broadcasts naturally. When statistics are stale or you know better than the optimiser, you can force it by wrapping the small side in broadcast, or with a broadcast hint in sequel.
+
+But it can backfire. Broadcasting a side that's larger than driver memory blows up the driver. So cap the broadcast threshold at roughly the size of the largest small table you actually have.
+
+One more thing worth knowing — adaptive query execution, which we cover in the optimization notebook, can promote a regular sort-merge join to a broadcast join at runtime, once it sees the real partition sizes, even if the planner's statistics said otherwise.

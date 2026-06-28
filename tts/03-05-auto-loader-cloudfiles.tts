@@ -1,0 +1,9 @@
+Auto loader — cloud-files, the workhorse.
+
+Auto loader is a structured streaming source identified by the format string cloud-files. It does one job, at any scale — discover new files in a cloud directory and stream them into a delta table, with checkpointed exactly-once semantics on the writes.
+
+The shape is the same every time. You read a stream in the cloud-files format, tell it the underlying file format, give it a schema location, and load from the source path. Then you write the stream to a table with a checkpoint location and a trigger.
+
+A few options the exam tests. Cloud-files-dot-format is the underlying file format — jay-son, C-S-V, parquet, avro, and so on. Cloud-files-dot-schema-location is where auto loader caches the inferred schema across runs. Cloud-files-dot-schema-evolution-mode controls what happens when a new column appears. And the checkpoint location, on the writer, is where streaming tracks the offsets it has processed.
+
+One trigger worth calling out — trigger available-now. It processes every file that exists right now and then stops. It's the modern replacement for trigger-once, and you run it from a scheduled job to get batch-like cadence on top of the streaming engine. Auto loader wins over copy-into when the file count per run is huge or the data arrives continuously.

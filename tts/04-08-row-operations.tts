@@ -1,0 +1,9 @@
+Row operations.
+
+Filter and where are aliases — pick one and stay consistent. Both accept either a boolean column expression or a sequel string.
+
+Distinct drops full-row duplicates, and it's cheap when the rows really are identical. Drop-duplicates with a subset drops rows where just the listed columns are duplicates — but here's the catch: the row that survives is unspecified unless you order the data first.
+
+That leads to the pattern the bank's silver layer actually uses to handle retried upstream sends — keep-latest deduplication. You define a window partitioned by the natural key, ordered by the ingestion time descending, assign a row number within each partition, and keep only row number one.
+
+Why does the exam love this window trick over plain drop-duplicates? Because it's deterministic. With drop-duplicates, when two rows share the same transaction id, which one survives depends on partition order — it's essentially random. The window approach always keeps exactly the row you specified.

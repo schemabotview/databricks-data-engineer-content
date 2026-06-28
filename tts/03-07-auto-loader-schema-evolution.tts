@@ -1,0 +1,13 @@
+Auto loader schema enforcement and evolution — the four modes.
+
+Auto loader infers the schema on the first batch, or uses a hint you supplied, and caches it at the schema location. On every later batch it compares the incoming file's schema against that cache. What happens when there's a difference is controlled by the schema-evolution-mode, and there are four settings.
+
+Add-new-columns is the default. The stream fails on the file containing the new column, but when you restart it, it picks up the new column, evolves the schema, and continues. This is best for production — no silent drift, but easy recovery.
+
+Rescue keeps the stream running. Unknown columns are captured into a single rescued-data column instead of being dropped. Nothing fails, and nothing is silently lost.
+
+Fail-on-new-columns is the strictest. The stream fails permanently, and you must explicitly evolve the schema yourself and restart. Use it for regulated data where a new column needs human review.
+
+And none silently ignores new columns. Only use it when you fully control the upstream and a new column would be a bug.
+
+One more piece — the rescued data column. Auto loader can add a rescued-data column to every row, and anything that didn't fit the schema lands there as jay-son. Combined with rescue mode, that means nothing the source emits is ever silently lost.

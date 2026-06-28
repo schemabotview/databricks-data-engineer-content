@@ -1,0 +1,9 @@
+Architecture — control plane versus compute plane.
+
+When you sign in to a databricks workspace, you are talking to two distinct planes.
+
+The control plane is the part databricks operates in its own cloud account. It serves the workspace user interface, holds your notebook source, stores job definitions, runs the cluster manager that provisions virtual machines, and houses unity catalog metadata. The key point — your data never sits in the control plane.
+
+The compute plane is where your queries actually run, and it lives in your cloud account, or in a databricks-managed serverless tenant. The cluster machines, the executor processes, and the spark drivers themselves run here. The data they read sits in your own object storage, also in your account.
+
+So the mental model is this. Metadata and orchestration live with databricks. Your data and the compute that touches it stay in your account. That separation is exactly why the platform can govern and operate your workloads without ever holding your data.

@@ -1,0 +1,9 @@
+Hands-on — ingesting the bank's four verticals.
+
+Let's walk through what you'd run, assuming the development catalog, the bronze schema, and the landing-zone volume from the previous notebook already exist.
+
+The first step is housekeeping — set the working catalog and schema, then create subdirectories inside the landing volume for each vertical's raw drops, plus directories for auto loader's schema and checkpoint state. Keeping those inside the volume means they're unity-catalog-governed too.
+
+From there, the walkthrough seeds a couple of daily comma-separated drops for accounts and ingests them with copy-into, showing that re-running skips files it already loaded. Then it streams the nested card jay-son in with auto loader, using a schema location and a checkpoint and an available-now trigger. And there's a J-D-B-C cell for the loans database, which needs a reachable source — substitute your own connection or skip it.
+
+Run all of this in a databricks notebook attached to a cluster, where the spark session is provided for you.

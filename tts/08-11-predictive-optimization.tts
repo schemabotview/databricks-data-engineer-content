@@ -1,0 +1,9 @@
+Predictive optimization — let databricks run maintenance for you.
+
+We introduced predictive optimization earlier as the way to skip writing maintenance jobs. Here's the operational view.
+
+What it runs for you is optimize — compaction and cluster rebalancing — and vacuum — storage reclamation — at the right cadence, informed by your actual access patterns, and billed at a serverless rate. You enable it at the catalog or schema level with a single statement.
+
+There are two exam-relevant constraints. It works on unity catalog managed tables only — external tables don't get it, which is one more reason to prefer managed. And it depends on specific regions and runtimes, though the exam tends to treat it as universally available.
+
+So the exam question pattern is — how do you keep gold tables compact without writing a maintenance job? The answer is enable predictive optimization.

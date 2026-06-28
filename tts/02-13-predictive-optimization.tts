@@ -1,0 +1,7 @@
+Predictive optimization.
+
+On unity catalog managed tables, predictive optimization runs optimize and vacuum for you, on a schedule that's informed by your actual access patterns. You enable it at the catalog or schema level, and databricks does the right amount of compaction and cleanup, billed at a serverless rate.
+
+There are two reasons this matters at the associate level. First, it's the correct answer whenever a question asks how to keep curated tables performant without writing your own maintenance job.
+
+And second, it is unity catalog only. External tables stored in raw paths outside the catalog do not get this. So it's yet another reason to prefer managed tables.

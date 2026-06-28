@@ -1,0 +1,7 @@
+Lakeflow jobs run history — trend, not snapshot.
+
+The run history view lists every run of a job with its state, start time, duration, and a little trend line of recent durations. The single most important thing it shows you is the trend against a historical baseline.
+
+There are three patterns to recognise. A gradual ramp, where duration creeps up over weeks — usually data growth outpacing cluster capacity, or a slowly-growing fact table making a join progressively more skewed. A step change, where a single day jumps — usually a code or config change, a new upstream source, or a runtime upgrade. And spiky, where most runs take ten minutes but the occasional one takes ninety — usually resource contention or an occasional bad data day.
+
+So the exam's framing is — a job's median duration tripled overnight, where do you look first? The answer is the run history view for the trend, then the task graph of a slow run.

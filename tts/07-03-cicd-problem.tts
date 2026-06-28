@@ -1,0 +1,9 @@
+The problem C-I-C-D solves on databricks.
+
+Before bundles, promoting a pipeline from development to production looked like one of two bad options.
+
+The first was point-and-click. Engineers cloned notebooks across workspaces by hand, copy-pasted job definitions, and updated paths manually. Drift was inevitable — production ended up running a spec slightly different from development, and the two diverged over months.
+
+The second was rest-A-P-I scripts. Teams wrote shell scripts that called the jobs A-P-I and the workspace A-P-I to upload notebooks and create jobs. It was workable, but every team reinvented the same plumbing differently, and there was no canonical way to describe this pipeline, plus this job, plus these notebooks, deployed as one unit.
+
+Automation bundles solve this. You get a single declarative file that describes every resource in your project, and a command-line tool that validates, deploys, and runs that bundle against any target workspace. The same source tree promotes from development to test to production just by changing one flag.

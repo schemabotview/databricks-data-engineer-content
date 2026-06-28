@@ -1,0 +1,9 @@
+Grant, revoke, and deny — on principals.
+
+Three statements, three roles in the system.
+
+Grant adds a privilege — you grant use-catalog, use-schema, and select to a group so it can read a table. Revoke removes a privilege that was explicitly granted earlier. And deny explicitly blocks a privilege, even if some other grant would have allowed it.
+
+That leads to the precedence rule the exam tests — deny beats grant. So if you granted select on the whole catalog to the analysts, but also denied select on one sensitive table, the deny wins for that specific table. It's how you carve a single exception out of a broad grant.
+
+There are three principal types. Users, which are human accounts. Groups, which are preferred for production — you manage membership in your identity provider and grant to the group name. And service principals, the non-human identities for jobs and continuous integration. And the best practice the exam rewards — grant to groups, never to individual users.

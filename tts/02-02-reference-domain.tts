@@ -1,0 +1,7 @@
+Reference domain.
+
+We continue with the same fintech consumer bank. Two tables drive this notebook.
+
+The first is silver dot customers — the shared dimension you stood up at the end of the first notebook. The second is a new one, silver dot card transactions. This is the busiest fact table in the bank, the one the fraud and machine learning teams care about most.
+
+Keep those two in mind. Almost every example here — acid, time travel, merge, maintenance — is shown against card transactions, because it's the table that's written constantly and read constantly.

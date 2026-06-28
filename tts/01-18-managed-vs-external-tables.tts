@@ -1,0 +1,7 @@
+A first taste — managed versus external tables.
+
+When you create a table the simple way, you get a managed table. With a managed table, unity catalog owns both the metadata and the underlying files. The consequence is that if you drop it, the files are deleted too, after a retention period.
+
+An external table is different. It points at files in a location you already own — typically a path inside a unity catalog external location. When you drop an external table, only the metadata goes away; the files themselves stay put.
+
+Choosing between the two is a governance topic, and it gets a full walkthrough later in the course. For now, just remember the default — prefer managed. The reason is that unity catalog can apply predictive optimization, liquid clustering, and lifecycle management to data it controls end to end. External tables are for files you must share with non-databricks systems.

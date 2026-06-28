@@ -1,0 +1,9 @@
+Notifications and operational hooks.
+
+There are three channels to know.
+
+Email notifications fire on events like start, success, failure, a duration warning, or a streaming backlog, and they're configured at the job level. Webhooks, or system destinations, send to slack, microsoft teams, pagerduty, or a generic A-P-I endpoint — that's the right answer when a question mentions paging on-call.
+
+And then there's run-as identity. A job runs as a user or a service principal, and that identity governs which unity catalog permissions apply. The rule the exam wants — production jobs should run as a service principal, not a human's account.
+
+One pattern ties notifications to the graph. You wire a final task with run-if set to all-done, so it fires whether the upstream succeeded or failed. The bank uses exactly that to push a summary status to slack after every nightly run.

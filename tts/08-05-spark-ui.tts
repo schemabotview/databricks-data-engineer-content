@@ -1,0 +1,9 @@
+The spark interface — what the tabs actually tell you.
+
+The spark interface for a notebook task is your microscope. There are three tabs the exam cares about.
+
+The jobs tab has one row per action — the slow job is just the slow row. The stages tab has one row per stage, and a stage is the unit of work between shuffles — so the slow stage is the slow row, and you click into it. The stage detail page is where the gold is. It gives you a tasks table, one row per task, sortable by duration or shuffle read or spill; and a task summary, showing the min, median, and max of duration, garbage-collection time, shuffle read and write, and spill.
+
+Now, what do those signals mean? If max task duration is far above the median, that's skew — one partition is much bigger than the rest. If total shuffle write is very large, the stage is shuffle-heavy. If spill to disk is above zero, you have memory pressure. If garbage-collection time is a large fraction of task time, that's memory pressure too, possibly an out-of-memory about to happen. And many tiny tasks finishing in under a tenth of a second means too many shuffle partitions.
+
+One more — the executors tab is where you check per-executor memory and disk pressure, and look for failures.

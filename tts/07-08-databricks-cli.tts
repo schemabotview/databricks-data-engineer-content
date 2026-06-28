@@ -1,0 +1,11 @@
+The databricks command-line interface — validate, deploy, run, and destroy.
+
+Four subcommands cover the entire bundle workflow.
+
+Validate parses the manifest, resolves the variables for your chosen target, checks all the resource references, and emits the fully-resolved definition that would be sent to the A-P-I. You run it first, and you run it in continuous integration on every pull request.
+
+Deploy uploads your notebooks and source files to the workspace, and creates or updates every resource — jobs, pipelines, volumes, schemas — so the workspace matches the manifest. It's idempotent, so re-deploying an unchanged bundle is a no-op.
+
+Run kicks off a one-off run of a specific resource, like a job or a pipeline, and tails its output — it's the continuous-integration equivalent of clicking run-now in the interface.
+
+And destroy removes all the resources the bundle owns from the target workspace. Use it carefully — but it's exactly what you want for tearing down an ephemeral test environment. So a typical local loop is validate against dev, deploy to dev, then run the job against dev.

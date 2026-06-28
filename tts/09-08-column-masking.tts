@@ -1,0 +1,9 @@
+Column masking.
+
+A column mask is a function that runs at query time on a specific column. The function decides — typically based on the current user or group — whether to return the real value or a masked version.
+
+It's two steps. First, you declare the mask as a unity catalog function. For a card number, the function might return the last four digits for the fraud team, the full value for compliance, and the word redacted for everyone else. Second, you attach that mask to a column with an alter-table alter-column set-mask statement.
+
+After that, every single read of that column goes through the mask function. And the function has full access to the security context — the current user, and group-membership checks — so it can branch its behaviour per principal. To remove it, you alter the column and drop the mask.
+
+The key property — because the mask lives on the column of the base table, there's no way for a reader to accidentally bypass it. Every query path sees the masked value.

@@ -1,0 +1,11 @@
+What is a lakeflow job?
+
+There are three nested concepts here, and once you have the vocabulary right, the rest is easy.
+
+A job is the unit of orchestration — a named, version-controlled definition of what to run and when. The bank has one nightly job per business unit.
+
+A task is one step inside a job — a notebook, a sequel query, a pipeline, a dashboard, and so on. A job is either one task or many tasks arranged in a graph.
+
+And a run is a single execution. You might say the job had fifty runs last month and forty-nine succeeded. Every run has a state — pending, running, succeeded, failed, cancelled, or skipped.
+
+A quick rename watch — lakeflow jobs is the current name. Databricks workflows and databricks jobs are the legacy names, and the exam may use either. And one more thing — a single-task job is fine for trivial work, but the exam mostly tests multi-task jobs, a graph of tasks with dependencies, because that's what real E-T-L looks like.

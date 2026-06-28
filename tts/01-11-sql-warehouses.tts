@@ -1,0 +1,11 @@
+Sequel warehouses — business intelligence and ad-hoc sequel.
+
+A sequel warehouse is a compute target specialised for sequel queries — concurrent, low-latency, and photon-accelerated. There are three flavours, in order of capability.
+
+Classic warehouses run in your own cloud account and start in minutes. You pick them for legacy needs or when data residency requires the machines to live in your account. Pro warehouses also run in your account and add advanced features. And serverless warehouses are databricks-managed, start in seconds, and are the default for new workloads — instant scale and the lowest total cost of ownership.
+
+All three speak the same standard sequel, all three have photon on, and all three share the same editor, dashboards, and alerts. The only real difference is where the machines run and how fast they start.
+
+Now the exam-classic question pattern. When business analysts run ad-hoc sequel throughout the day, you want a warehouse that autoscales clusters to handle concurrent users, starts fast, and shuts down when idle. That is a serverless sequel warehouse. Watch for the older high-concurrency cluster answer — that's its predecessor, and the modern equivalent is a serverless sequel warehouse with autoscaling.
+
+And note the concurrency model. On pro and serverless you set a minimum and maximum number of clusters, not just workers. As the query queue grows, more clusters spin up; as it shrinks, they spin down. You're sizing for concurrency, not for the size of any single query.

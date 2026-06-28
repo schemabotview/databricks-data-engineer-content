@@ -1,0 +1,5 @@
+Library conflicts.
+
+Two packages requiring incompatible versions of the same dependency — the bane of every shared cluster. The symptoms are telling. An import error deep inside a third-party library. A library that worked yesterday breaking after a runtime upgrade. Or two notebooks that each work alone on the same cluster but break when run together.
+
+The resolution order goes like this. Prefer notebook-scoped python — install the package with percent-pip inside the one notebook that needs it, so each notebook gets its own environment. Pin versions in cluster libraries rather than taking whatever is latest. Use the machine-learning runtime for machine-learning packages, because those are pre-resolved for you. Use serverless compute, where databricks resolves the runtime stack and you just install what you need. And for java or scala, use a thin package or shade your dependencies to avoid clashes.

@@ -1,0 +1,7 @@
+Apply-changes-into — declarative change-data-capture and slowly changing dimensions.
+
+Hand-writing merge-into for change-data-capture works, but it's verbose and easy to get wrong. Apply-changes-into is the declarative pipelines equivalent — declarative change-data-capture, with slowly-changing-dimension type one or type two baked right in.
+
+There are five clauses worth memorising. Keys names the natural key for the upsert. Sequence-by names the ordering column that decides which change wins when updates arrive out of order — the latest-wins rule. Apply-as-delete-when propagates hard deletes from the source. Stored-as scd type one overwrites in place, keeping no history. And stored-as scd type two keeps full history, with start and end timestamps and an is-current flag, all maintained for you.
+
+Why does the exam love this? Because the hand-rolled type-two merge is a multi-statement, race-prone affair — close the old row, insert the new one, get the ordering right. Apply-changes-into stored-as scd type two does all of that in one declarative block. So whenever a question asks for the simplest way to keep dimension history from a change feed, this is the answer.

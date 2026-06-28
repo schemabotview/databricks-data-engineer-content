@@ -1,0 +1,9 @@
+Job clusters — scheduled, ephemeral, cheaper.
+
+A job cluster is created by lakeflow jobs at the start of a run and torn down at the end. So each scheduled execution of the bank's nightly card-transactions E-T-L spins up a fresh cluster, runs the notebook, writes the output, and then dies.
+
+Use a job cluster for any production scheduled or triggered workload. This is the default for lakeflow jobs tasks.
+
+Why is it the right default? Four reasons. It has a cheaper rate than all-purpose, because non-interactive compute is priced lower. It gives you isolation — each run gets clean state, with no leftover variables and no library conflicts from a previous run. It can be right-sized per task, since different tasks in the same job can use different configurations. And it auto-cleans — you cannot forget to shut it down, because it dies when the run ends.
+
+The trade-off is roughly three to five minutes of startup per run. If you need a cadence faster than that, reach for serverless compute instead.

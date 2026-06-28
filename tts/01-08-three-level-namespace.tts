@@ -1,0 +1,9 @@
+The three-level namespace.
+
+Unity catalog organises every governed object into a strict three-level hierarchy. The shape is catalog, then schema, then object.
+
+For the bank, it looks like this. At the top, a metastore, one per region. Inside it, catalogs that map to environments — fintech development, fintech production, and a separate catalog for machine learning models. Inside each catalog, schemas — bronze for raw landed data, silver for cleaned and conformed data, gold for business-ready data. And inside each schema, the tables themselves, like silver dot card transactions or gold dot customer three sixty.
+
+Here's why three levels matter for choosing compute. Permission scopes follow the namespace. The fraud team's sequel warehouse can be granted use-catalog on fintech production and select on only the gold schema. That means the same physical warehouse can safely serve analysts without ever exposing bronze.
+
+One more thing. The legacy hive metastore form is only two levels — schema dot table. You'll still see it in old workspaces, but every new table in this course goes into unity catalog. Treat hive metastore as something you migrate off, not onto.

@@ -1,0 +1,9 @@
+Time-based versus data-driven triggers — the exam decision.
+
+The exam frames most trigger questions as a single trade-off — time-based, meaning a scheduled cron, versus data-driven, meaning file arrival or table update.
+
+Go time-based when the data lands on a predictable, well-known cadence, when you want a stable execution window for service-level agreements and cost forecasting, or when downstream consumers expect the table to be fresh as of midnight regardless of when the source actually arrived.
+
+Go data-driven when the source landing time is variable or unpredictable, when you want to minimise latency by running as soon as data is available, or when empty polled runs would be expensive.
+
+Here's the classic exam scenario. A partner drops a file at an unpredictable time each night, and the team wants to ingest as soon as it's available without running an empty job every hour. The answer is a file-arrival trigger. A cron schedule is the distractor — it either wastes compute on empty runs or misses the data by hours.

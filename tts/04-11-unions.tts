@@ -1,0 +1,11 @@
+Unions — union, union-all, and union-by-name.
+
+Three operations that sound similar but behave differently.
+
+Union concatenates rows and matches columns by position. So both dataframes must have the same number of columns, in the same order. And importantly, it does not deduplicate, despite what sequel's union does by default. Union-all is just a deprecated alias for the same thing.
+
+Union-by-name matches columns by name instead of position, which is much safer in production. And with allow-missing-columns set to true, any columns missing on one side are filled with null.
+
+Here's the exam trap. Developers expect union to deduplicate, because sequel's union does. But spark's union is actually closer to sequel's union-all. So to deduplicate, you have to chain a distinct after it.
+
+The practical advice — prefer union-by-name in any code that has to survive schema changes, because matching by position quietly produces wrong results the moment column order shifts.

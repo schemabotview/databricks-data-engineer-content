@@ -1,0 +1,9 @@
+Row filters.
+
+A row filter is a function that returns a boolean for each row. Unity catalog adds an implicit where clause on every read against the table, keeping only the rows where the function returns true for the querying principal.
+
+So you might write a region filter — a function that, for a compliance analyst in India, returns true only when the country is India; for a compliance analyst in the U-S, true only for U-S rows; and for the global compliance group, true for everything. You attach it to the table with an alter-table set-row-filter statement, naming the column it reads.
+
+After that, every select from the table is implicitly filtered, and each principal sees only their slice. To remove it, you alter the table and drop the row filter.
+
+And here's the powerful combination — a row filter plus a column mask together give you the bank's full sensitive-data regime. A compliance analyst in India sees full data, but only for Indian customers. A plain analyst sees only the Indian rows and also gets the card number redacted. Two features, composed on the base table, enforce the whole policy.

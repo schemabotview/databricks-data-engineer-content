@@ -1,0 +1,5 @@
+Reference domain.
+
+The worked example for this notebook is the bank's nightly ingest job. Picture one job that does the whole evening's work. It ingests the daily drops for cards, accounts, and loans, runs the silver transformations, refreshes the customer three-sixty in gold, updates a dashboard, and finally sends a status notification.
+
+That single job is a small graph of tasks with dependencies, and we'll use it to ground every concept in this notebook — what a task is, how dependencies wire up, what fires the run, and how you monitor and repair it.

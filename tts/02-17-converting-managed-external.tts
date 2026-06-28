@@ -1,0 +1,9 @@
+Converting between managed and external.
+
+You can flip a managed table to external, so that unity catalog stops owning the files. Or you can convert an external table to managed, so that unity catalog takes ownership. You do this with the dedicated alter-table set-managed and set-external syntax.
+
+There are three things the exam wants you to know. First, both operations are metadata-level on the catalog side — the table's identity and its three-part name stay exactly the same.
+
+Second, the physical files may or may not move, depending on the direction of the conversion. So always test on a copy first.
+
+And third, the principal performing the conversion needs the right privileges on both the table and the target storage location.

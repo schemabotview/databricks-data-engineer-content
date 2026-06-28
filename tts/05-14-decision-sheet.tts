@@ -1,0 +1,9 @@
+The decision sheet — picking the right gold object.
+
+Let's tie the gold objects together into a cheat sheet.
+
+A heavy aggregation that business-intelligence dashboards refresh many times an hour — that's a materialized view. Continuous fact ingestion, where transactions stream in and the gold table should reflect them — that's a streaming table. A light wrapper that hides sensitive columns or encodes a common filter — that's a plain view.
+
+A full declarative pipeline with quality gates, lineage, and change-data-capture — that's lakeflow spark declarative pipelines. Needing type-two history on a dimension fed by a change feed — that's apply-changes-into stored-as scd type two.
+
+For quality — dropping rows that fail a rule while keeping the pipeline going is expect-or-drop, and stopping the pipeline on a critical violation is expect-or-fail. Rejecting bad rows at write time on a plain delta table is a check constraint. And custom batch logic you fully control end to end is just a plain delta table written from a job.

@@ -1,0 +1,7 @@
+Hands-on — the bank's permission regime.
+
+This walkthrough grants the bank's three groups — analysts, fraud analysts, and compliance — exactly what each one needs against the fintech catalog.
+
+It starts with the hierarchy walk — use-catalog, then use-schema, then select — scoped tightly per group. Analysts get read-only access to gold. Fraud analysts get read access to silver and gold, plus the ability to call the security functions. Compliance gets the broadest read access. Then it creates the masking and row-filter functions in a dedicated security schema, and attaches them to the sensitive tables, so the three views we described at the start actually hold.
+
+One practical note — the groups don't have to exist for the statements to be valid sequel, so the cells emit the grants even if the principals aren't provisioned yet. Run them in a notebook attached to a sequel warehouse or cluster, as a user who can manage the catalog.

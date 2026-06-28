@@ -1,0 +1,7 @@
+Resources — jobs, pipelines, and everything else.
+
+Inside a bundle, each resource type has a schema that mirrors the corresponding databricks rest A-P-I. So a job defined in a bundle uses the same fields you'd otherwise send to the jobs create A-P-I — the same shape we saw in the orchestration notebook.
+
+For example, a job resource declares its name, its schedule as a cron expression, its failure notifications, its parameters, and its list of tasks. Each task names what it runs, the cluster it uses, its dependencies, and its retry count.
+
+The important pattern to notice is how variables thread through. A task's parameters can reference a bundle variable — like passing the catalog variable down into the notebook — so the very same job resource targets the development catalog in one environment and the production catalog in another, without changing the resource file at all. You typically keep each resource in its own file under a resources folder, and include them from the main manifest.

@@ -1,0 +1,9 @@
+Auto loader — directory listing versus file notification mode.
+
+Auto loader has two ways to discover new files, and the choice is a cost-and-scale trade-off.
+
+Directory listing mode is the default. On every micro-batch, auto loader lists the source directory and figures out which files are new. It needs no extra cloud setup, which makes it simple to start with. But once a prefix holds hundreds of millions or billions of files, listing the directory every batch becomes the bottleneck.
+
+File notification mode flips that around. Auto loader sets up a notification on the cloud storage — using the cloud's own queue service — so that whenever an object is created, an event is pushed onto a queue. Auto loader just reads the queue instead of scanning the directory. It costs a little more setup and a few cloud resources, but it scales to enormous file counts because discovery no longer depends on how many files already exist.
+
+So the rule is simple. Start with directory listing. Switch to file notification when listing becomes too slow at very large scale.

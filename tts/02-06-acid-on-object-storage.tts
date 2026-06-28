@@ -1,0 +1,13 @@
+Acid on object storage — the four properties, paid for by the log.
+
+Object stores like S-three don't give you transactions natively. Delta lake builds the four acid properties up on top of them.
+
+Atomicity. A transaction commits the moment the next commit file appears in the log. That jay-son write is itself atomic — a single put. Either readers see the new commit, or they don't. Half-written data files written before the commit are simply not part of the table, because no add action references them yet.
+
+Consistency. Every commit is validated against the current table state — schema and constraints — before it's accepted.
+
+Isolation. Delta uses optimistic concurrency control. Two writers prepare their commits independently, and whoever wins the race to write the next commit file wins. The loser re-reads the latest log, checks whether its changes still apply with no conflict on the touched files, and retries.
+
+Durability. The underlying object store handles durability for both the data files and the log files. Once a commit is written, it's persisted.
+
+Why is this exam-relevant? Because the bank's nightly card pipeline and the real-time fraud stream can write to the same table without corrupting each other. Either a commit succeeds and becomes visible, or it conflicts and retries — never a partial result.

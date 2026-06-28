@@ -1,0 +1,7 @@
+Reference domain.
+
+The bank has four very different ingestion problems, one per vertical, and that's deliberate — because each one calls for a different tool.
+
+Accounts arrives as a daily comma-separated file dropped to object storage — a classic batch load. Cards arrives as nested jay-son files landing continuously from the payment processor — high volume, incremental, with a schema that may drift. Loans lives in an operational database, so it has to be pulled. And payments case data lives in a software-as-a-service app, salesforce, which has its own A-P-I.
+
+So keep those four shapes in mind. By the end of this notebook, you'll be able to look at any new source and immediately say which ingestion path it belongs to.

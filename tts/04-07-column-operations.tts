@@ -1,0 +1,9 @@
+Column operations.
+
+There are four operations and one principle to take away.
+
+Select picks, reorders, or evaluates expressions over columns, and returns a new dataframe. With-column adds or replaces a single column — it's the cheapest way to derive a new field. With-column-renamed renames in place, which is handy right before a join when both sides share a column name. And drop removes columns.
+
+Now the principle, and it's the one the exam tests. Every transformation returns a new dataframe — spark dataframes are immutable. So with-column does not change the original dataframe; it returns a new one that you have to bind to a variable. If you forget to capture the result, your change simply doesn't exist.
+
+One convenience worth knowing — instead of chaining with-column and cast repeatedly, you can use select-expression and write the casts as sequel strings inline, which is often cleaner to read.

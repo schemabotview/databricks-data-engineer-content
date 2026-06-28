@@ -1,0 +1,9 @@
+Liquid clustering — operational, not just on-disk.
+
+We met liquid clustering earlier as the modern replacement for partitioning plus zorder. Here's the operational angle the exam tests.
+
+The pre-liquid layout decision was one-shot. You picked the partition column up front, and if you got it wrong, re-partitioning meant a full rewrite of terabytes of data. Zorder helped with co-location within partitions, but the partitioning itself stayed fixed.
+
+Liquid clustering changes that dynamic. You declare the columns the table is clustered on, delta organises the data into clusters that can be incrementally re-balanced, and you can change the keys later without rewriting the world. So a table clustered on customer id and time today can be re-clustered on merchant category three months later when query patterns shift.
+
+What it buys you operationally is four things — no small-files-per-partition problem, because directories aren't the unit of organisation any more; no skew when one partition is a hundred times larger, because clusters re-balance; the ability to evolve the keys as queries change; and it pairs naturally with predictive optimization. That's why it's the recommended default for new delta tables.

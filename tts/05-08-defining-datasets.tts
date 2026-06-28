@@ -1,0 +1,9 @@
+Defining datasets — python and sequel.
+
+Lakeflow spark declarative pipelines let you define your datasets in either python or sequel, and both produce the same dependency graph.
+
+In python, it's decorator-based. You annotate a function with the table decorator, and the function returns the dataframe for that dataset. A bronze function reads the raw files as a stream, a silver function reads the bronze dataset and cleans it, and a gold function reads silver and aggregates. The framework reads the dependencies between these functions and builds the graph for you.
+
+In sequel, it's declarative in the same way. You write create-or-refresh streaming table statements, each selecting from the one before it. The bronze table streams from the landing files, silver selects from bronze, gold aggregates from silver.
+
+The key idea either way — you describe what each dataset is, not the orchestration. You don't wire up the order of execution yourself; the pipeline framework infers the graph from how the datasets reference each other.

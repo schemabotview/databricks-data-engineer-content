@@ -1,0 +1,9 @@
+The decision sheet — pick the right ingestion path.
+
+Let's tie it all together into a cheat sheet for any new source the bank brings on.
+
+A daily file drop with few files and simple sequel preferred — that's copy-into. Files arriving continuously, possibly millions, with a schema that may evolve — that's auto loader. Auto loader where directory listing is too slow at billion-file scale — add file notification mode.
+
+A software-as-a-service app with a managed connector, like salesforce or workday — that's a lakeflow connect managed connector. A relational database with change-data-capture — a managed database connector. Kafka, kinesis, event hubs, or pub-sub — structured streaming as a standard connector. A long-tail app with no managed connector — a partner connector. An operational database with no managed connector and a nightly snapshot — a J-D-B-C pull in a job. A custom rest A-P-I — land raw jay-son to a volume, then auto-load it. And a small, cold source you query rarely with no copies allowed — lakehouse federation, where you don't ingest at all.
+
+Two pivot questions resolve most exam scenarios. First — is the source files in object storage, or a system with its own A-P-I? Files lean toward copy-into or auto loader; an A-P-I leans toward a managed connector, J-D-B-C, or federation. Second — do you need every change as it happens, every file as it lands, or just a periodic snapshot? That tells you streaming versus incremental versus batch.

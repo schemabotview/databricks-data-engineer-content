@@ -1,0 +1,9 @@
+Materialized views — precomputed, auto-refreshed, queried like a table.
+
+A materialized view is a query result that databricks computes once, stores as delta, and then refreshes on a declared cadence — say every hour — or whenever you explicitly call refresh.
+
+Take the customer three-sixty as the example. It joins customers to their last thirty days of transactions and rolls up counts, total spend, and distinct merchants per customer. Defined as a materialized view scheduled hourly, that heavy aggregation runs on a schedule, not on every read.
+
+What you get is four things. Incremental refresh — when the base tables change, only the affected rows recompute, where the query supports it. Consistent reads — like a table, not subject to mid-write inconsistency in the base tables. Cheap reads for business intelligence — analysts hit a precomputed result instead of a fifty-billion-row aggregation. And a declarative definition — the refresh schedule lives with the object itself.
+
+That's the key contrast with a plain view. A view recomputes every read; a materialized view precomputes and stores, so the reader gets a fast, consistent answer.

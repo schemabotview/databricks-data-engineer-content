@@ -1,0 +1,7 @@
+Reference domain.
+
+The bank has three principal groups consuming the data, and they're the lens for this whole notebook.
+
+Analysts see aggregated gold tables, but not raw sensitive data — no email, phone, or date of birth. Fraud analysts see masked card numbers — say the last four digits — and can read the silver layer. And the compliance group sees full sensitive data, but only for the regions they're responsible for.
+
+So three groups, three different views of the same tables. Every governance feature we cover — grants, masks, row filters, attribute-based policies — exists to make those three views true at the same time, over one shared set of tables.

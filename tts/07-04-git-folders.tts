@@ -1,0 +1,9 @@
+Databricks git folders — what the exam wants you to know.
+
+A databricks git folder, formerly called databricks repos, is a workspace folder backed by a git remote — github, gitlab, azure devops, or bitbucket.
+
+From the workspace itself, you can do everything you'd expect with git. Clone a repo into a workspace folder. Switch branches, or create a new one. Commit your local changes with a message. Push to the remote, and pull updates back. And open a pull request — the interface links out to the remote to actually open it.
+
+There are two facts the exam tests. First, git folders are the right answer to how engineers commit notebook changes from inside databricks. The legacy alternative — exporting notebooks and manually adding them to a git repo — is wrong on a modern exam.
+
+And second, workspace files outside a git folder are not under source control. So production code belongs either in a git folder, or in a bundle that gets deployed to a workspace path. And remember the naming — git folders is current, repos is the legacy name for the same feature.

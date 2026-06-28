@@ -1,0 +1,13 @@
+The five object types you can build in gold.
+
+The exam expects you to pick the right object for each scenario, so let's go through the five.
+
+A plain table is a delta table you write with batch jobs. It stores data, its latency follows your job cadence, and it's right when you need full control over how and when it's written.
+
+A view stores no data — it's a logical query evaluated on every read. It recomputes each time, and it's right for light wrapping, security barriers, or hiding sensitive columns.
+
+A materialized view is a precomputed query result that's stored and refreshed automatically. It's right when a heavy aggregation is read often — like the customer three-sixty.
+
+A streaming table is an append-only table fed by a structured streaming query. It's near-real-time, and it's right for continuous change-data-capture or fact ingestion.
+
+And the fifth — a materialized view or streaming table defined declaratively inside a lakeflow spark declarative pipeline. Same shapes, but with the framework's quality checks and lineage built in. The two genuinely new objects compared to classic delta are the materialized view and the streaming table, and most of this notebook is about when to reach for each.

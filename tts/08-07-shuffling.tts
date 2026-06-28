@@ -1,0 +1,7 @@
+Bottleneck two — shuffling.
+
+The symptom in the interface is a stage whose time is dominated by shuffle write and shuffle read, with total shuffle write running into hundreds of gigabytes. The network is the bottleneck.
+
+The diagnosis is that joins and aggregations require all rows for a given key to land on the same executor, and that redistribution across the network is the shuffle.
+
+The remedies, in priority order. Broadcast when one side fits in memory. Filter and project early — the smallest shuffle is one that moves the fewest bytes, so push your where and select upstream so the shuffle only carries what's needed. Right-size the shuffle-partitions setting — for a one-terabyte shuffle, two hundred partitions makes each one five gigabytes, which is too big and spills, whereas four thousand partitions puts each at around two-fifty megabytes, the sweet spot. Let adaptive execution coalesce tiny post-shuffle partitions into right-sized ones automatically. And avoid unnecessary repartitioning — calling repartition right before a join, when the optimiser was going to shuffle correctly anyway, just buys you a second shuffle.

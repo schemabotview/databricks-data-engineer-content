@@ -1,0 +1,9 @@
+The decision sheet.
+
+Let's tie governance together into a cheat sheet.
+
+For a new table, the default is managed; choose external only when files must be readable by non-databricks tools at a specific path. To give analysts read access to gold tables, grant use-catalog, then use-schema, then select — the full chain. To block a specific table for a group despite a catalog-level grant, use deny, because deny beats grant.
+
+To hide a card number from analysts but show the last four to the fraud team, use a column mask. To restrict compliance analysts to their own region's rows, use a row filter. To apply masks and filters to every sensitive-tagged column across hundreds of tables, use attribute-based access control.
+
+And for observability — to answer who read this table last tuesday, query the system access audit table; and to track column-level read and write lineage, use the table-lineage table and the lineage tab.

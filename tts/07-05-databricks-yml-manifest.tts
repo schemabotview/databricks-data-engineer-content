@@ -1,0 +1,7 @@
+The databricks-dot-yaml manifest.
+
+An automation bundle is anchored by one file — databricks-dot-yaml — and it has three required top-level sections: bundle, resources, and targets.
+
+There are three concepts the exam wants you to recognise. Variables are declared once with a default, and you pass them into resources with a variable placeholder — so the catalog name, say, is a variable. Targets are named deployments — development, test, and production — and each one has its own workspace host, its own identity, and its own variable overrides. And mode is set per target — development mode or production mode — which changes how clusters and errors are handled.
+
+So the shape is — declare your variables and includes at the top, then define a target for each environment, each pointing at a different workspace and overriding the variables, like which catalog and which node size to use. That one file is the seam that lets a single codebase behave differently in each environment.

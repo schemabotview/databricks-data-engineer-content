@@ -1,0 +1,9 @@
+All-purpose clusters — interactive, multi-user development.
+
+An all-purpose cluster is a long-lived cluster you create, attach a notebook to, and share with teammates. It stays up between commands, so you don't pay startup time on every cell.
+
+Use it when a data engineer is iterating on a transformation, when a small team is sharing a development cluster, or when you need to attach several notebooks at once.
+
+Don't use it for scheduled production E-T-L. You'd pay the more expensive all-purpose rate for work a job cluster could do cheaper, and you'd risk concurrent users interfering with the job.
+
+There are a few key knobs to know. Mode — single user, recommended for unity catalog, or shared for multiple users. Autoscaling — set a minimum and maximum worker count, and the cluster scales between them as load changes. Auto-termination, which is required to control cost — after some idle minutes the cluster shuts down, and thirty to sixty minutes is typical for development. And the runtime version — in production, pick a long-term-support runtime for stability.

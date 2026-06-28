@@ -1,0 +1,7 @@
+Hands-on — a tiny bundle for the bank's pipeline.
+
+This walkthrough assembles a minimal bundle directory on disk that mirrors the fintech-platform project. The notebook is really just emitting file contents — in real life you'd commit these to git, install the command-line tool, and run the deploy command from your laptop or a continuous-integration runner.
+
+It lays out a small tree — a resources folder, a notebooks folder, a source folder, and a workflows folder for the C-I pipeline. Then it writes the databricks-dot-yaml manifest with its variables and its three targets, writes a job resource file, and writes a sample github-actions workflow that validates and deploys.
+
+The important thing to notice is that these cells only write files — there are no databricks A-P-I calls — so you can run them in any notebook. The actual deployment happens when you run the validate and deploy commands against a real workspace.

@@ -1,0 +1,7 @@
+Reference domain.
+
+Every concept in this course is applied to one running example: a fintech consumer bank. Picture a bank with four lines of business — cards, loans, accounts, and payments — all sharing a common customers dimension.
+
+The bank wants a single platform. One place that ingests raw events from all four sources, curates them through bronze, silver, and gold layers, and then serves dashboards, machine learning, and ad-hoc queries to analysts.
+
+Keep that picture in mind as we go. This first notebook is about the platform we'll build everything else on top of.

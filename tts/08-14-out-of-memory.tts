@@ -1,0 +1,9 @@
+Out-of-memory — executor versus driver, and the fix patterns.
+
+Out-of-memory comes in two flavours, and which one you have tells you the fix.
+
+Executor out-of-memory shows up as a heap-space error in a task log, with tasks failing and the stage retrying. The causes and fixes — a partition too big, so bump the shuffle-partitions so each fits; skew packing too much into one task, so use adaptive skew-join handling; a collect into a wide aggregation, so don't collect, write to a table instead; a user-defined function with high per-row memory, so batch it with a pandas function or rewrite it using built-ins; or caching too much, so unpersist when you're done. Raising executor memory is the last resort.
+
+Driver out-of-memory is reported from the driver, and the notebook hangs or the cluster restarts. The causes — calling collect or to-pandas on a big dataframe, which you should never do beyond a few megabytes; an enormous job that bloats the driver; or broadcasting a too-big table, so cap the broadcast threshold. Again, raising driver memory is the last lever.
+
+So the exam pattern — an executor task fails with out-of-memory after the shuffle. The answer is increase shuffle partitions, use skew-join handling, broadcast the small side. Bumping memory is always the last lever, not the first.

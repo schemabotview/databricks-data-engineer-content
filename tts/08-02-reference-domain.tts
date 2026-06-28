@@ -1,0 +1,5 @@
+Reference domain.
+
+Here's the scenario that drives this whole notebook. The bank's silver-build task, inside the nightly ingest job, used to finish in twelve minutes. Last week it started taking thirty-eight.
+
+That single regression is our worked example. We'll follow the diagnostic flow it forces you through — run history, then the task graph, then the spark interface, then the physical plan — and apply the fix patterns databricks expects you to know. So every concept here is in service of answering one question: why did this job suddenly get three times slower, and how do you fix it?

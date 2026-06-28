@@ -1,0 +1,7 @@
+The directed acyclic graph — tasks and dependencies.
+
+Tasks declare which other tasks must succeed before them. Lakeflow jobs builds a directed acyclic graph from those dependencies and runs the tasks in topological order, parallelising wherever it can.
+
+Take the bank's nightly job. The three ingest tasks — cards, accounts, and loans — have no dependencies between them, so they run in parallel. The silver build declares all three as upstream, so it waits until all three succeed. Then gold customer three-sixty runs, then the dashboard refresh, and finally a notify task at the very end.
+
+There are two task settings the exam tests here. Depends-on is the list of upstream task keys — an empty list means it's a root task. And run-if controls when a task should run given the upstream outcomes. The default is all-success, meaning every parent must succeed. But there are others — at-least-one-success, none-failed, all-done, and so on. All-done is especially useful — it's how you wire a final notification task that fires whether the run succeeded or failed.

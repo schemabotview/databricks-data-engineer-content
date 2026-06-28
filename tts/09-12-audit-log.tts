@@ -1,0 +1,7 @@
+Audit log.
+
+Every unity catalog permission grant, every table access, and every cross-account read is recorded in the audit log. There are two things the exam may probe.
+
+First, the audit log is the forensic source of truth. It's how you answer a question like — did anyone query the customer email column outside compliance hours? Second, the system access schema, inside the system catalog, exposes that audit data as queryable tables. So you can write an ordinary sequel query against the audit table to see who accessed what, when.
+
+Related to that is lineage. The table-lineage table in that same system schema records which jobs and notebooks read which tables and wrote which tables — down to column-level lineage. That's exactly what powers the lineage tab in the unity catalog interface. So when the exam asks where to find who-read-what or how-data-flows, the answer is the system access schema and the lineage tab.

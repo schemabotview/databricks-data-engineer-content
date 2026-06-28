@@ -1,0 +1,9 @@
+Volumes — governed storage for files, not rows.
+
+Tables are for rows. Volumes are unity catalog's answer for everything that isn't tabular — raw jay-son dumps from the payments source, P-D-Fs of loan agreements, model artifacts, libraries, image datasets.
+
+A volume is referenced like any catalog object, by its three-part name — catalog dot schema dot volume name. From a notebook, you read and write its files under a slash-volumes path built from those same three parts.
+
+There are two flavours, mirroring tables. A managed volume means unity catalog owns the storage location — use it for unstructured data your own team produces. An external volume catalogs files at a path you already own — use it for data dropped in by external systems, like the bank's secure file landing zone for daily card extracts.
+
+The important context — volumes replace the legacy mount points. Mounts had no permission model in the catalog; volumes do. So on the exam, volumes are the answer whenever the question involves accessing files that aren't already delta tables.

@@ -1,0 +1,13 @@
+The diagnostic flow — where to look first.
+
+When a job starts misbehaving, follow a fixed sequence. The exam asks variants of it directly, so internalise the order.
+
+Step one — the run history view. The question is, is this one run slow, or have all recent runs been slow? The output is a trend, like — it started getting slow three days ago.
+
+Step two — the task graph view of one slow run. The question is, which task is slow, and is it slow only because something upstream is slow? The output is, for instance — the silver build is the slow task.
+
+Step three — the spark interface for that task, on the stages tab. The question is, which stage is slow, and what does its task-level summary say? The output might be — the join stage takes thirty minutes, and most tasks finish in thirty seconds but one runs for twenty-five.
+
+Step four — the stage detail and its task summary metrics. You read the min, median, and max of shuffle read, spill, and garbage-collection time. The output might be — max shuffle read is five gigabytes against a median of four hundred megabytes, which is skew.
+
+And step five — fix it, by matching the pattern to the right remedy, which is the rest of this notebook.

@@ -1,0 +1,11 @@
+Cluster startup failures — the checklist.
+
+When a cluster fails to start, the workspace event log is the source of truth. There are four common failure modes.
+
+First, cloud capacity or quota. You see messages like instance-limit-exceeded or insufficient-capacity. The cloud doesn't have that instance type available in the region, or your account's quota is exhausted. The fix is to change the instance type, change the availability zone, request a quota increase, or switch to serverless.
+
+Second, identity and permissions. You see authorization errors. The cluster's instance profile or service principal can't reach the resources it needs. The fix is to check the cluster role's trust policy and attached policies.
+
+Third, init scripts failing. An install in an init script hits a network policy or a stale package, and the cluster reports an init-script failure. The fix is to read the init script log, repair the script, and restart. Note that init scripts don't run on serverless — another reason serverless sidesteps this whole class of problems.
+
+And fourth, library install failing. A bad cluster library brings the cluster up but in an error or restarting state. The fix is to find the bad library in the cluster's libraries tab and remove or pin it.

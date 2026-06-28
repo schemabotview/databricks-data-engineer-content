@@ -1,0 +1,11 @@
+The transaction log — what a commit file actually contains.
+
+Each commit file is a small jay-son document made up of a few action types. Picture the third commit on a table — it lists what changed in that one transaction.
+
+There are three actions that matter most. An add action says a parquet file is now part of the table. Crucially, it embeds statistics — the minimum, maximum, and null count per column — which is how delta skips files at read time without ever opening them.
+
+A remove action says a parquet file is no longer part of the table. And here's the subtle part — the file is not deleted from object storage. It just stops being listed. Vacuum is what actually removes the bytes later.
+
+And a metadata action carries the table schema, partitioning, and properties. Any schema change emits a new metadata action.
+
+One more piece. Every ten commits by default, delta writes a checkpoint — a parquet summary of the log up to that point — so a reader doesn't have to replay thousands of tiny jay-son files to reconstruct the table state.

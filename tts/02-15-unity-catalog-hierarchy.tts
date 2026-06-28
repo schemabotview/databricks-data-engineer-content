@@ -1,0 +1,9 @@
+The unity catalog object hierarchy.
+
+Delta lake makes the files on disk trustworthy. Unity catalog makes the tables, views, volumes, models, and functions discoverable and governed — one catalog across the whole platform.
+
+The hierarchy goes like this. At the top, a metastore, one per region. Inside it, catalogs. Inside each catalog, schemas. And inside each schema sit the securable objects. There are six securable types at the schema level — tables, views, volumes, functions, models, and materialized views. Each one is referenced by its three-part name.
+
+The thing to internalise is that permissions flow down the hierarchy. Granting use-catalog on the development catalog, plus select on its gold schema, lets a principal read every table in gold without ever touching bronze or silver.
+
+And three things unity catalog gives you that the legacy hive metastore could not — a unified permission model across users, groups, and service principals; lineage and audit out of the box; and cross-workspace, cross-cloud namespacing, with one metastore per region shared by every workspace in it. The full grant semantics come in the governance notebook; here we just care about the shape of the namespace.

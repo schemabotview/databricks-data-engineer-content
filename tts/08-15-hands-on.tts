@@ -1,0 +1,7 @@
+Hands-on — diagnosing skew on the bank's silver build.
+
+This walkthrough makes skew visible. It constructs a deliberately skewed dataset — a big side of several million transactions where most rows belong to one corporate customer, joined against a small per-customer attribute table where that corporate customer is just a single row.
+
+Then it runs the join twice. First with adaptive execution turned off, so you can see the un-handled skew pattern — one straggler task running far longer than the rest, the classic max-far-above-median signature. Then it turns on adaptive skew-join handling and re-measures, and you watch that straggler get split and the stage finish much faster.
+
+The point is to see, on one concrete example, both the symptom in the timing and the fix in action — so run it on a databricks cluster, or locally, on a recent runtime that supports skew-join handling.

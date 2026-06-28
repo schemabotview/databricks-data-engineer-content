@@ -1,0 +1,7 @@
+Privileges — what each one buys you.
+
+Let's go through the privileges the exam expects you to recognise.
+
+Use-catalog lets you see the schemas inside a catalog, and use-schema lets you see the objects inside a schema. Select lets you read rows from a table, view, or materialized view. Modify lets you insert, update, delete, and merge rows, and alter for schema changes. Create lets you make new objects inside a catalog or schema, and there are finer-grained create privileges like create-table and create-schema. Execute lets you call a function. Read-volume and write-volume govern reading and writing files in a volume. Browse lets you see metadata — names and comments — without seeing the data. Apply-tag lets you tag objects for governance, which feeds attribute-based access control. And all-privileges grants everything at that level — use it sparingly.
+
+One concept that's separate from privileges — ownership. The owner of an object can do anything to it, including changing its grants. There's exactly one owner per object, and you transfer it with alter-owner-to. Groups can own objects too, which is usually better than a single person owning production data.

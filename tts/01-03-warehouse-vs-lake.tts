@@ -1,0 +1,11 @@
+The problem — warehouse versus lake, and why we needed both fused.
+
+Before the lakehouse, the bank's data team would have run two parallel stacks. Picture this.
+
+A data warehouse gave them fast queries, acid transactions, and strict schemas — perfect for the finance dashboard reporting yesterday's card volume. But it was expensive per terabyte, it couldn't store raw jay-son logs efficiently, and it was locked away from data scientists who wanted python and notebooks for fraud modelling.
+
+A data lake gave them the opposite trade. Cheap storage for raw events at any scale, which the fraud researchers loved. But it had no transactions. A failed write could leave the loan repayments table half updated, and a reader hitting the table mid-write got a corrupted view. Schemas drifted, and governance was bolted on with three different tools.
+
+Either choice forced the bank to copy data between systems, reconcile two sources of truth, and run two security models. The fraud team's model and the chief financial officer's dashboard would disagree on what today's transactions even meant.
+
+The lakehouse fuses the two. Cheap object storage at the bottom, an open table format — delta lake — on top that adds acid and schema enforcement, one governance layer over everything, and one engine that serves both sequel analytics and python machine learning. The bank stores raw card transactions once, curates them once, and serves the same table to the dashboard, the fraud model, and the regulator.

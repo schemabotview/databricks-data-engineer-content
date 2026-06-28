@@ -1,0 +1,7 @@
+The workspace — assets a data engineer touches daily.
+
+A workspace is the unit of organisation in databricks. Typically you have one workspace per environment — development, test, and production — per business unit.
+
+Inside it, you work with a handful of assets every day. Notebooks, the interactive documents where you write python and sequel. Databricks git folders, which are workspace folders backed by a git remote, so you can branch, commit, push, and open pull requests right from the user interface. Lakeflow jobs, the orchestrated graphs of tasks. Lakeflow spark declarative pipelines for declarative E-T-L. Databricks sequel for the sequel editor, queries, dashboards, and alerts. Volumes, which are governed file storage for unstructured data. And secrets, a scoped store for credentials.
+
+Now, a rename watch, because the exam tests current naming. Three names changed recently. Lakeflow jobs was formerly databricks workflows. Lakeflow spark declarative pipelines was formerly delta live tables. And databricks git folders was formerly databricks repos. When you see the old names in a question, mentally translate them to the new ones.

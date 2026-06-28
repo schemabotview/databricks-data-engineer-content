@@ -1,0 +1,5 @@
+Reference domain.
+
+The worked example here is the bank's fintech-platform git repository. Picture one repo that holds everything — the ingestion notebooks, the silver-build and gold-modelling notebooks, the declarative pipeline from the modeling notebook, and the nightly job from the orchestration notebook.
+
+And crucially, it holds one databricks-dot-yaml file that promotes the whole thing across environments. So by the end of this notebook, that single codebase will deploy to development, test, and production — just by changing one flag.

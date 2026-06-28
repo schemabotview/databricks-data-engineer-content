@@ -1,0 +1,11 @@
+Splitting and exploding arrays.
+
+There are a few array primitives the exam tests directly.
+
+Split turns a string into an array on a delimiter — so a comma-separated tag string like travel, food, fuel becomes a three-element array. Explode then produces one row per array element — that's the classic pattern for unpacking a line-items or events array. Posexplode does the same but also emits the position index of each element.
+
+So a common chain is — split a string column into an array, then explode that array so each element becomes its own row.
+
+There's also array-contains, which is the predicate version. You use it in a where clause to filter rows whose array holds a given value, instead of materialising every element into a row first.
+
+And the inverse direction — collecting values back into an array inside a group-by. Collect-list keeps duplicates with undefined order, while collect-set deduplicates them.

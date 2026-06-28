@@ -1,0 +1,9 @@
+Task types — the four the exam tests by name.
+
+Lakeflow jobs supports a long list of task types, but there are four the exam asks about directly.
+
+A notebook task runs a notebook from the workspace or a git folder, on a cluster. A sequel task runs a saved sequel query, alert, file, or dashboard, on a sequel warehouse. A pipeline task runs a lakeflow spark declarative pipeline, on the pipeline's own compute. And a dashboard task refreshes an A-I-slash-B-I dashboard, on a sequel warehouse.
+
+Beyond those four, you should recognise a family of secondary types — jar, python script, and python wheel for code packaged outside notebooks; a dbt task; a run-job task that runs another job, for nested composition; a for-each task that loops a child task over a list; and an if-else condition task for branching.
+
+One detail worth noting — the sequel task has four sub-variants, because databricks sequel has four artifact types: queries, alerts, files, and dashboards. The sequel-query variant is by far the most common.

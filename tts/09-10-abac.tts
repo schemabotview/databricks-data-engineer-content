@@ -1,0 +1,7 @@
+Unity catalog attribute-based access control.
+
+Per-table row filters and column masks work, but they don't scale to hundreds of tables — you'd be attaching the same mask over and over. Attribute-based access control lets you define a policy once and apply it everywhere a table or column carries a specific tag.
+
+There are three building blocks. Tags are labels you attach to catalogs, schemas, tables, or columns — something like pii-class equals high, or sensitivity equals restricted. Policies are central declarations — for example, mask any column tagged pii-class high for everyone outside the compliance group, or filter rows by data residency. And evaluation happens at query time — unity catalog looks at the queried object's tags, finds the matching policies, and applies them on top of the principal's grants.
+
+So the workflow is — tag the sensitive columns once across all your tables, then write one policy that targets that tag. The exam pattern is clear: when a question asks for one central policy that masks or filters across many objects, the answer is attribute-based access control, not per-table masks.

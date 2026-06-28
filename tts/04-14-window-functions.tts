@@ -1,0 +1,7 @@
+Window functions — the pattern silver and gold lean on.
+
+A window function computes a value per row, using a window of other rows around it. You define the window by partitioning on some key and ordering within it, and then apply a function over that window.
+
+There are three shapes the exam tests. Row-number, ordering each customer's transactions newest-first, lets you pick row one for latest-wins deduplication — the same trick we saw earlier. Lag, over that same window, gives you the previous transaction's amount per customer, which is how you do period-over-period calculations. And sum, combined with a frame that runs from the start of the partition up to the current row, gives you a running total per customer.
+
+That frame is worth a note. Rows-between defines the window frame by a count of rows, while range-between defines it by the values of the ordering column. So the three things to remember windows for are deduplication with row-number, period-over-period with lag and lead, and running totals with sum over a rows-between frame.

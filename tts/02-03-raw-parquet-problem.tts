@@ -1,0 +1,11 @@
+The problem — what raw parquet on object storage does not give you.
+
+Picture the bank's pipeline before delta lake existed. The card-transactions feed lands as parquet files on S-three every fifteen minutes, and the fraud dashboard reads the same path. Three things keep breaking.
+
+First, partial writes are visible. A spark job writing the ten-fifteen batch creates twenty parquet files. If the cluster dies after fifteen are written, the dashboard sees those fifteen new files alongside the old ones — no transaction wrapped them, so the partial result is exposed.
+
+Second, concurrent writers corrupt each other. Two jobs land late-arriving data into the same hour. They both list the partition, both write new files, both rewrite the success marker. There is no lock, so the final state just depends on who finishes last.
+
+Third, there's no schema enforcement. The cards source team adds a merchant country column. The new files have eleven columns, the old ones have ten, and spark inferring the schema either silently drops the new column or fails the read with a cryptic mismatch.
+
+On top of all that, there's no time travel, no efficient row-level updates, and no audit log of who changed what. You can build all of this yourself — many teams did, badly. Delta lake is the open-source library that gives you all of it, through one transaction log.

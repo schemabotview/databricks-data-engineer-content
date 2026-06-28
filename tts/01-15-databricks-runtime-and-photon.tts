@@ -1,0 +1,7 @@
+Databricks runtime and photon.
+
+Every cluster runs a databricks runtime — databricks' tuned distribution of spark, plus delta lake, the language runtimes, and dozens of pre-installed libraries. You pick a runtime by its major version and its flavour.
+
+There are a few flavours to know. The long-term-support runtime gets bug fixes for two years — use it for production. The plain non-long-term-support runtime has newer features but a shorter support window — use it for development and early features. The machine learning runtime adds libraries like tensorflow, pytorch, and M-L-flow. And the photon runtime adds the photon engine.
+
+So what is photon? Photon is a C-plus-plus rewrite of spark's hot execution path. It vectorises operators and uses cache-aware columnar processing. The key insight is that it can be two to ten times faster on typical sequel aggregations and joins. It is charged at a higher rate, but that usually still nets a lower total bill because the work finishes so much faster. On classic clusters photon is a checkbox; on sequel warehouses and serverless it's on by default.

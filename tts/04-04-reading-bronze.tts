@@ -1,0 +1,7 @@
+Reading bronze.
+
+There are two equivalent ways to read a bronze table — the python dataframe API and plain sequel — and the exam may show you either side of it. Both return a lazy result. Reading a delta table never reads any bytes until an action runs, and the catalyst optimiser pushes column pruning, predicate pushdown, and partition pruning right into the read.
+
+Two variations are worth knowing. You can read a specific delta version using version-as-of, which is how you build a reproducible silver — pinning exactly which bronze snapshot the build ran against.
+
+And you can do a streaming read instead of a batch read, which is what you reach for when silver should update continuously as bronze updates. Same table, just read as a stream.

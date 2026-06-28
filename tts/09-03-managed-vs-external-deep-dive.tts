@@ -1,0 +1,9 @@
+Managed versus external tables — the deep dive.
+
+We met this distinction earlier; here the exam expects you to operate on it.
+
+To recap the core differences. With a managed table, unity catalog owns the files, they live in a catalog-managed location, and dropping the table eventually deletes them. With an external table, you own the files, they live at a path you specify inside an external location, and dropping the table leaves them in place. Managed tables get predictive optimization and the full lifecycle features; external tables don't.
+
+The mechanical difference when you create them is one clause. A managed table has no location clause — you just create it using delta. An external table adds a location clause pointing at a path inside a unity catalog external location.
+
+And it's worth knowing that external locations are themselves unity catalog objects. You register an external location once, with its storage credentials managed centrally, and then external tables and volumes reference it. So access to the underlying cloud path is governed too, not just the table metadata.

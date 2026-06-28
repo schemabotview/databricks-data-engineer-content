@@ -1,0 +1,9 @@
+Hands-on — exploring the platform.
+
+Let's walk through what you'd actually run in a databricks notebook attached to a cluster or sequel warehouse. The assumptions are simple — a workspace with unity catalog enabled, permission to create a catalog, and a recent runtime.
+
+The first thing to notice is that the workspace already gives you a spark session named spark. So unlike running locally, you do not create one yourself — the cluster does that for you when the notebook attaches. A good first move is just to confirm the runtime version and check whether photon is on.
+
+From there you can list the catalogs visible to you. In a fresh workspace you'd typically see main, samples, and system.
+
+Then you stand up the fintech catalog and the medallion schemas the course uses — bronze, silver, and gold. The important habit here is that these commands are written to be idempotent, meaning they create only if the object doesn't already exist, so they're safe to re-run. If you're reading locally, treat all of this as the recipes you'd paste into a workspace — the community edition or a trial workspace is the recommended place to practise.

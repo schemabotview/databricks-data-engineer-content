@@ -1,0 +1,11 @@
+Three ingestion patterns — batch, incremental, and streaming.
+
+Every source you'll ever ingest falls into one of three shapes.
+
+Batch means the full dataset every time. Here's all of yesterday's accounts as one file. It's simple, but it gets expensive once the file is big, and it's wasteful when only one percent of the data actually changed.
+
+Incremental means only the new or changed records since the last load. The source emits a continuous trail of new files, or it supports change-data-capture, or it has a monotonic column you can watermark on. Most production lakehouse ingestion lives here.
+
+Streaming means records flow in continuously and the target updates continuously, within seconds to a few minutes. It's the same engine as incremental — structured streaming — just with a continuous trigger instead of a one-shot.
+
+And there's some exam vocabulary you must own. Trigger-available-now processes whatever's there right now, then stops — that's how you run a micro-batch on a schedule, and it replaced the older trigger-once. Trigger-processing-time fires every few seconds or minutes, for true continuous streaming. And the checkpoint location is where structured streaming records the offsets it has already processed, so a restarted job picks up exactly where it left off — that's what gives you exactly-once semantics on the write path.

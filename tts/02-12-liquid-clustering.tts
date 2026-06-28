@@ -1,0 +1,9 @@
+Liquid clustering — the modern replacement for partitioning plus zorder.
+
+Classic delta layouts force a one-time decision. Do you partition by transaction date, or by customer id? Get it wrong, and you're stuck — re-partitioning a terabyte-scale table is a full rewrite.
+
+Liquid clustering replaces both partitioning and zorder with a single property. You declare which columns the table is clustered on, and delta organises the data into clusters that can be incrementally re-balanced. The key win is that you can change the cluster keys later without rewriting the world.
+
+So what do you give up, and what do you gain? You give up the explicit directory-style partition structure. In return you gain three things — no small-files-per-partition problem, no skew when one partition is a hundred times larger than another, and the ability to evolve your clustering as query patterns change.
+
+For the exam, remember the recommendation. Liquid clustering is recommended for new delta tables, and it comes up again in the optimization notebook.
