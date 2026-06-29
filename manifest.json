@@ -11,8 +11,7 @@
       "notebook": "notebooks/01-platform-and-compute.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/01-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/01-02-reference-domain.wav" },
         { "heading": "The problem — warehouse vs. lake, and why we needed both fused", "scene": "databricks-data-engineer", "spine": true, "highlight": ["data-intelligence-platform"], "focus": "data-intelligence-platform", "audio": "audio/01-03-warehouse-vs-lake.wav" },
         { "heading": "What the Data Intelligence Platform actually is", "scene": "databricks-data-engineer", "spine": true, "highlight": ["data-intelligence-platform"], "focus": "data-intelligence-platform", "audio": "audio/01-04-what-the-platform-is.wav" },
         { "heading": "Architecture — control plane vs. compute plane", "scene": "databricks-data-engineer", "spine": true, "highlight": ["workspace-compute", "compute"], "focus": "workspace-compute", "audio": "audio/01-05-control-plane-vs-compute-plane.wav" },
@@ -29,8 +28,7 @@
         { "heading": "Mapping the Fintech bank's workloads to the platform", "scene": "databricks-data-engineer", "spine": false, "highlight": ["data-intelligence-platform"], "focus": "data-intelligence-platform", "audio": "audio/01-16-mapping-the-bank-workloads.wav" },
         { "heading": "Hands-on — exploring the platform", "scene": "databricks-data-engineer", "spine": false, "highlight": ["workspace-compute"], "focus": "workspace-compute", "audio": "audio/01-17-hands-on-exploring-the-platform.wav" },
         { "heading": "A first taste — managed vs. external tables", "scene": "databricks-data-engineer", "spine": true, "highlight": ["uc-namespace", "delta-lake"], "focus": "unity-catalog", "audio": "audio/01-18-managed-vs-external-tables.wav" },
-        { "heading": "Section 1 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 1 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -39,8 +37,7 @@
       "notebook": "notebooks/02-delta-lake-unity-catalog.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/02-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/02-02-reference-domain.wav" },
         { "heading": "The problem — what raw Parquet on object storage does not give you", "scene": "databricks-data-engineer", "spine": true, "highlight": ["delta-lake"], "focus": "delta-lake", "audio": "audio/02-03-raw-parquet-problem.wav" },
         { "heading": "What Delta Lake actually is", "scene": "databricks-data-engineer", "spine": true, "highlight": ["delta-lake"], "focus": "delta-lake", "audio": "audio/02-04-what-delta-lake-is.wav" },
         { "heading": "The transaction log — what a commit file actually contains", "scene": "databricks-data-engineer", "spine": true, "highlight": ["delta-log"], "focus": "delta-lake", "audio": "audio/02-05-transaction-log.wav" },
@@ -59,8 +56,7 @@
         { "heading": "Volumes — governed storage for files, not rows", "scene": "databricks-data-engineer", "spine": true, "highlight": ["uc-volumes"], "focus": "unity-catalog", "audio": "audio/02-18-volumes.wav" },
         { "heading": "The `hive_metastore` legacy catalog", "scene": "databricks-data-engineer", "spine": false, "highlight": ["uc-metastore"], "focus": "unity-catalog", "audio": "audio/02-19-hive-metastore-legacy.wav" },
         { "heading": "Hands-on — Delta + UC against `silver.card_transactions`", "scene": "databricks-data-engineer", "spine": false, "highlight": ["delta-lake", "unity-catalog"], "focus": "foundation", "audio": "audio/02-20-hands-on.wav" },
-        { "heading": "Section 1 + 7 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 1 + 7 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -69,8 +65,7 @@
       "notebook": "notebooks/03-data-ingestion.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/03-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/03-02-reference-domain.wav" },
         { "heading": "Three ingestion patterns — batch, incremental, streaming", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-connect", "auto-loader", "copy-into"], "focus": "connectivity", "audio": "audio/03-03-three-ingestion-patterns.wav" },
         { "heading": "`COPY INTO` — idempotent file ingestion in pure SQL", "scene": "databricks-data-engineer", "spine": true, "highlight": ["copy-into"], "focus": "lakeflow-connect", "audio": "audio/03-04-copy-into.wav" },
         { "heading": "Auto Loader — `cloudFiles`, the workhorse", "scene": "databricks-data-engineer", "spine": true, "highlight": ["auto-loader"], "focus": "lakeflow-connect", "audio": "audio/03-05-auto-loader-cloudfiles.wav" },
@@ -86,8 +81,7 @@
         { "heading": "Lakehouse Federation — when *not* to ingest at all", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakehouse-federation"], "focus": "connectivity", "audio": "audio/03-15-lakehouse-federation.wav" },
         { "heading": "The decision sheet — pick the right ingestion path", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-connect"], "focus": "connectivity", "audio": "audio/03-16-decision-sheet.wav" },
         { "heading": "Hands-on — ingesting the bank's four verticals", "scene": "databricks-data-engineer", "spine": false, "highlight": ["sources", "lakeflow-connect"], "focus": "sources", "audio": "audio/03-17-hands-on.wav" },
-        { "heading": "Section 2 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 2 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -96,8 +90,7 @@
       "notebook": "notebooks/04-transformations.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/04-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/04-02-reference-domain.wav" },
         { "heading": "Bronze → silver — what changes between layers", "scene": "databricks-data-engineer", "spine": true, "highlight": ["bronze", "silver"], "focus": "medallion", "audio": "audio/04-03-bronze-to-silver.wav" },
         { "heading": "Reading bronze", "scene": "databricks-data-engineer", "spine": true, "highlight": ["bronze"], "focus": "medallion", "audio": "audio/04-04-reading-bronze.wav" },
         { "heading": "Cleaning nulls", "scene": "databricks-data-engineer", "spine": true, "highlight": ["silver"], "focus": "medallion", "audio": "audio/04-05-cleaning-nulls.wav" },
@@ -113,8 +106,7 @@
         { "heading": "Tuning knobs — the four the exam asks about", "scene": "databricks-data-engineer", "spine": true, "highlight": ["spark-engine", "photon"], "focus": "engine", "audio": "audio/04-15-tuning-knobs.wav" },
         { "heading": "Writing silver", "scene": "databricks-data-engineer", "spine": true, "highlight": ["silver", "delta-lake"], "focus": "medallion", "audio": "audio/04-16-writing-silver.wav" },
         { "heading": "Hands-on — bronze.card_transactions_raw → silver.card_transactions", "scene": "databricks-data-engineer", "spine": false, "highlight": ["bronze", "silver"], "focus": "medallion", "audio": "audio/04-17-hands-on.wav" },
-        { "heading": "Section 3 (part 1) self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 3 (part 1) self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -123,8 +115,7 @@
       "notebook": "notebooks/05-modeling-pipelines.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/05-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/05-02-reference-domain.wav" },
         { "heading": "Medallion architecture — what belongs in each layer", "scene": "databricks-data-engineer", "spine": true, "highlight": ["bronze", "silver", "gold"], "focus": "medallion", "audio": "audio/05-03-medallion-architecture.wav" },
         { "heading": "The five object types you can build in gold", "scene": "databricks-data-engineer", "spine": true, "highlight": ["gold"], "focus": "medallion", "audio": "audio/05-04-five-gold-object-types.wav" },
         { "heading": "Plain views — security barriers, hiding columns, light wrapping", "scene": "databricks-data-engineer", "spine": false, "highlight": ["dbsql-queries", "gold"], "focus": "dbsql", "audio": "audio/05-05-plain-views.wav" },
@@ -138,8 +129,7 @@
         { "heading": "Modeling gold — the patterns BI and ML want", "scene": "databricks-data-engineer", "spine": true, "highlight": ["gold", "dbsql", "mosaic-ai"], "focus": "data-intelligence-platform", "audio": "audio/05-13-modeling-gold.wav" },
         { "heading": "The decision sheet — picking the right gold object", "scene": "databricks-data-engineer", "spine": true, "highlight": ["gold"], "focus": "medallion", "audio": "audio/05-14-decision-sheet.wav" },
         { "heading": "Hands-on — gold objects and quality on the Fintech bank", "scene": "databricks-data-engineer", "spine": false, "highlight": ["gold", "declarative-pipelines"], "focus": "medallion", "audio": "audio/05-15-hands-on.wav" },
-        { "heading": "Section 3 (part 2) self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 3 (part 2) self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -148,8 +138,7 @@
       "notebook": "notebooks/06-lakeflow-jobs.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/06-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/06-02-reference-domain.wav" },
         { "heading": "What is a Lakeflow Job?", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-jobs"], "focus": "lakeflow-jobs", "audio": "audio/06-03-what-is-a-lakeflow-job.wav" },
         { "heading": "The DAG — tasks and dependencies", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-jobs"], "focus": "lakeflow-jobs", "audio": "audio/06-04-the-dag.wav" },
         { "heading": "Task types — the four the exam tests by name", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-jobs", "declarative-pipelines", "dbsql"], "focus": "lakeflow-jobs", "audio": "audio/06-05-task-types.wav" },
@@ -162,8 +151,7 @@
         { "heading": "Monitoring, repair, rerun", "scene": "databricks-data-engineer", "spine": false, "highlight": ["lakeflow-jobs"], "focus": "lakeflow-jobs", "audio": "audio/06-12-monitoring-repair-rerun.wav" },
         { "heading": "Defining a job — UI, REST API, and YAML", "scene": "databricks-data-engineer", "spine": false, "highlight": ["lakeflow-jobs", "connect-api"], "focus": "lakeflow-jobs", "audio": "audio/06-13-defining-a-job.wav" },
         { "heading": "Hands-on — tiny utilities you'd write inside job tasks", "scene": "databricks-data-engineer", "spine": false, "highlight": ["lakeflow-jobs"], "focus": "lakeflow-jobs", "audio": "audio/06-14-hands-on.wav" },
-        { "heading": "Section 4 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 4 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -172,8 +160,7 @@
       "notebook": "notebooks/07-cicd-bundles.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/07-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/07-02-reference-domain.wav" },
         { "heading": "The problem CI/CD solves on Databricks", "scene": "databricks-data-engineer", "spine": true, "highlight": ["repos"], "focus": "workspace-compute", "audio": "audio/07-03-cicd-problem.wav" },
         { "heading": "Databricks Git Folders — what the exam wants you to know", "scene": "databricks-data-engineer", "spine": true, "highlight": ["repos"], "focus": "workspace-compute", "audio": "audio/07-04-git-folders.wav" },
         { "heading": "The `databricks.yml` manifest", "scene": "databricks-data-engineer", "spine": true, "highlight": ["repos", "lakeflow-jobs"], "focus": "workspace-compute", "audio": "audio/07-05-databricks-yml-manifest.wav" },
@@ -184,8 +171,7 @@
         { "heading": "Run-as identity — service principals in non-dev", "scene": "databricks-data-engineer", "spine": false, "highlight": ["uc-grant"], "focus": "unity-catalog", "audio": "audio/07-10-run-as-identity.wav" },
         { "heading": "What belongs in a bundle, what doesn't", "scene": "databricks-data-engineer", "spine": false, "highlight": ["repos"], "focus": "workspace-compute", "audio": "audio/07-11-what-belongs-in-a-bundle.wav" },
         { "heading": "Hands-on — a tiny bundle for the bank's pipeline", "scene": "databricks-data-engineer", "spine": false, "highlight": ["repos", "lakeflow-jobs"], "focus": "workspace-compute", "audio": "audio/07-12-hands-on.wav" },
-        { "heading": "Section 5 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 5 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -194,8 +180,7 @@
       "notebook": "notebooks/08-troubleshooting-optimization.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/08-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/08-02-reference-domain.wav" },
         { "heading": "The diagnostic flow — where to look first", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-jobs", "spark-engine"], "focus": "data-intelligence-platform", "audio": "audio/08-03-diagnostic-flow.wav" },
         { "heading": "Lakeflow Jobs run history — trend, not snapshot", "scene": "databricks-data-engineer", "spine": true, "highlight": ["lakeflow-jobs"], "focus": "lakeflow-jobs", "audio": "audio/08-04-run-history.wav" },
         { "heading": "Spark UI — what the tabs actually tell you", "scene": "databricks-data-engineer", "spine": true, "highlight": ["spark-engine"], "focus": "engine", "audio": "audio/08-05-spark-ui.wav" },
@@ -209,8 +194,7 @@
         { "heading": "Library conflicts", "scene": "databricks-data-engineer", "spine": false, "highlight": ["dbr-runtime"], "focus": "compute", "audio": "audio/08-13-library-conflicts.wav" },
         { "heading": "Out-of-memory — executor vs. driver, and the fix patterns", "scene": "databricks-data-engineer", "spine": true, "highlight": ["compute", "spark-engine"], "focus": "compute", "audio": "audio/08-14-out-of-memory.wav" },
         { "heading": "Hands-on — diagnosing skew on the bank's silver build", "scene": "databricks-data-engineer", "spine": false, "highlight": ["spark-engine", "silver"], "focus": "engine", "audio": "audio/08-15-hands-on.wav" },
-        { "heading": "Section 6 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false }
+        { "heading": "Section 6 self-check", "scene": "databricks-data-engineer", "spine": false }
       ]
     },
     {
@@ -219,8 +203,7 @@
       "notebook": "notebooks/09-governance-security.ipynb",
       "defaultScene": "databricks-data-engineer",
       "sections": [
-        { "heading": "What's covered", "scene": "databricks-data-engineer", "spine": true, "role": "hook" },
-        { "heading": "Reference domain", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/09-02-reference-domain.wav" },
+        { "heading": "Reference domain", "role": "hook", "scene": "databricks-data-engineer", "spine": false, "audio": "audio/09-02-reference-domain.wav" },
         { "heading": "Managed vs. external tables — the deep dive", "scene": "databricks-data-engineer", "spine": true, "highlight": ["uc-namespace", "uc-volumes"], "focus": "unity-catalog", "audio": "audio/09-03-managed-vs-external-deep-dive.wav" },
         { "heading": "Converting between managed and external", "scene": "databricks-data-engineer", "spine": false, "highlight": ["uc-namespace"], "focus": "unity-catalog", "audio": "audio/09-04-converting-managed-external.wav" },
         { "heading": "The security hierarchy", "scene": "databricks-data-engineer", "spine": true, "highlight": ["uc-metastore", "uc-namespace", "uc-grant"], "focus": "unity-catalog", "audio": "audio/09-05-security-hierarchy.wav" },
@@ -234,7 +217,6 @@
         { "heading": "The decision sheet", "scene": "databricks-data-engineer", "spine": true, "highlight": ["unity-catalog"], "focus": "unity-catalog", "audio": "audio/09-13-decision-sheet.wav" },
         { "heading": "Hands-on — the bank's permission regime", "scene": "databricks-data-engineer", "spine": false, "highlight": ["uc-grant"], "focus": "unity-catalog", "audio": "audio/09-14-hands-on.wav" },
         { "heading": "Section 7 self-check", "scene": "databricks-data-engineer", "spine": false },
-        { "heading": "Summary", "scene": "databricks-data-engineer", "spine": false },
         { "heading": "Course recap — where to go from here", "scene": "databricks-data-engineer", "spine": false }
       ]
     }
